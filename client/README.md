@@ -1,32 +1,77 @@
 # duckomatic
 
-  Robot duck!
+  Robot duck Client!
 
-  ng serve
-  ng serve --target=production --environment=prod
-  ng build
-  ng build --target=production --environment=prod
+## Prerequisites
 
-  192.168.1.64
-  my_event
-  my_broadcast_event
-  join
-  leave
-  disconnect
-  my_response
+The client project has dependencies that require **Node 4.x.x and NPM 3.x.x**.
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.16.
+## Installation
+
+### Install NPM
+
+NPM comes bundled with Node.js so [download](https://nodejs.org/download/) and install Node.js.
+
+### Install Dependencies
+
+```bash
+cd client
+npm install
+npm install -g angular-cli
+```
+
+**Troubles Installating angular-cli?**
+
+Try:
+```bash
+npm install angular-cli
+```
+
+This installs angular-cli into your client directory. 
+So later running an application build or serve, use the ng path instead of the global path:
+ ```bash
+ cd client
+
+./node_modules/angular-cli/bin/ng build
+
+or
+
+./node_modules/angular-cli/bin/ng serve
+```
+
+### Set Environment Variables
+
+ ```
+"environments": {
+  "dev": "src/environments/environment.ts",
+  "prod": "src/environments/environment.prod.ts"
+}
+```
 
 ## Development server
+
+### Serve
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Build
+Run `ng build`. 
+The build artifacts will be stored in the `static/` directory.
+
+## Production server
+
+### Serve
+
+Run `ng serve --target=production --environment=prod` for a prod server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Build
+
+Run `ng build --target=production --environment=prod`
+The build artifacts will be stored in the `static/` directory.
 
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Visit [Angular-CLI](https://github.com/angular/angular-cli) for more info
 
 ## Running unit tests
 
@@ -36,11 +81,3 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
 Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to Github Pages
-
-Run `ng github-pages:deploy` to deploy to Github Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
