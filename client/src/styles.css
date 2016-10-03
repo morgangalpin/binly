@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+body {
+  margin: 0;
+}
+.container {
+  display: -webkit-flex;
+  display: flex;
+}
+nav {
+  width: 200px;
+}
+.flex-column {
+  -webkit-flex: 1;
+          flex: 1;
+}

@@ -1,0 +1,30 @@
+<md-sidenav-layout [class.m2app-dark]="isDarkTheme">
+
+  <md-sidenav #sidenav mode="side" class="app-sidenav">
+    Sidenav
+  </md-sidenav>
+
+  <md-toolbar color="primary">
+    <button class="app-icon-button" (click)="sidenav.toggle()">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button> {{title}}
+
+    <span class="app-toolbar-filler"></span>
+  </md-toolbar>
+
+  <div class="app-content">
+
+    <div class="container">
+      <app-control></app-control>
+      <app-speed></app-speed>
+      <app-position></app-position>
+      <app-camera></app-camera>
+    </div>
+
+  </div>
+
+</md-sidenav-layout>
+
+<span class="app-action" [class.m2app-dark]="isDarkTheme">
+  <button md-fab color="{{isConnected ? 'primary': 'warn'}}" (click)="connect()"><md-icon>check circle</md-icon></button>
+</span>

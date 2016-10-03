@@ -1,0 +1,9 @@
+      <md-card>
+        <md-card-title-group>
+          <md-card-title>Speed</md-card-title>
+          <md-card-subtitle>{{currentSpeed | number:'.1-1'}} km/h</md-card-subtitle>
+        </md-card-title-group>
+        <md-card-content>
+          <md-slider min="0" max="5" step="0.1" [(ngModel)]="currentSpeed"></md-slider>
+        </md-card-content>
+      </md-card>

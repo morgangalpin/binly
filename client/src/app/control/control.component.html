@@ -1,0 +1,23 @@
+      <md-card>
+        <md-card-title-group>
+          <md-card-title>Controls</md-card-title>
+        </md-card-title-group>
+        <md-card-content>
+          <table>
+            <tr>
+              <td></td>
+              <td><button md-fab color="primary" (click)="accelerate()"><md-icon>arrow_upward</md-icon></button></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><button md-fab color="primary" (click)="rudderLeft()"><md-icon>arrow_back</md-icon></button></td>
+              <td><button md-fab color="primary" (click)="reverse()"><md-icon>arrow_downward</md-icon></button></td>
+              <td><button md-fab color="primary" (click)="rudderRight()"><md-icon>arrow_forward</md-icon></button></td>
+            </tr>
+          </table>
+          <br />
+          <div class="container">
+            <button md-fab color="accent"><md-icon>speaker</md-icon></button>
+          </div>
+        </md-card-content>
+      </md-card>
