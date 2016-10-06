@@ -9,9 +9,9 @@ import { AppComponent } from './app.component';
 // Shared module
 import { SharedModule } from "./shared/shared.module";
 
-import { ControlModule } from './control/control.module';
-import { SpeedModule } from './speed/speed.module';
-import { PositionModule } from './position/position.module';
+import { RudderModule } from './rudder/rudder.module';
+import { ThrottleModule } from './throttle/throttle.module';
+import { GpsModule } from './gps/gps.module';
 import { CameraModule } from './camera/camera.module';
 
 @NgModule({
@@ -27,9 +27,9 @@ import { CameraModule } from './camera/camera.module';
     SharedModule,
 
     // Custom Modules
-    ControlModule,
-    SpeedModule,
-    PositionModule,
+    RudderModule,
+    ThrottleModule,
+    GpsModule,
     CameraModule
   ],
   providers: [],

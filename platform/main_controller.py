@@ -13,12 +13,10 @@ class MainController(Observable, Observer):
 		""" Constructor.
 		Creates a thread and starts it immediately.
 		"""
-		print "MainController.__init__() start"
 		super(MainController, self).__init__()
 		self._thread = threading.Thread(target=self.run, args=())
 		self._thread.daemon = True
 		self._thread.start()
-		print "MainController.__init__() finish"
 
 	def run(self):
 		""" Method that runs forever """
@@ -27,6 +25,6 @@ class MainController(Observable, Observer):
 			# Just send a message periodically for now until reading from the queue is in place.
 			time.sleep(10)
 			count += 1
-			self.update('test', {'data': 'Server generated event', 'count': count, 'namespace': '/test'})
+			self.update('test', {'message': 'Server generated event', 'count': count, 'namespace': '/test'})
 			message = self._messages.get()
 			self.update_observers(message['name'], message['data'])

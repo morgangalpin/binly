@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
-import { SpeedComponent } from './speed.component';
-import { SpeedService } from './speed.service';
+import { ThrottleComponent } from './throttle.component';
+import { ThrottleService } from './throttle.service';
 
 @NgModule({
   imports: [
@@ -12,8 +12,8 @@ import { SpeedService } from './speed.service';
     FormsModule,
     MaterialModule
   ],
-  declarations: [SpeedComponent],
-  exports: [SpeedComponent],
-  providers: [SpeedService]
+  declarations: [ThrottleComponent],
+  exports: [ThrottleComponent],
+  providers: [ThrottleService]
 })
-export class SpeedModule { }
+export class ThrottleModule { }

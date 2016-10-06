@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 
-import { PositionComponent } from './position.component';
+import { GpsComponent } from './gps.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule
   ],
-  declarations: [PositionComponent],
-  exports: [PositionComponent]
+  declarations: [GpsComponent],
+  exports: [GpsComponent]
 })
-export class PositionModule { }
+export class GpsModule { }

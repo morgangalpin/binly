@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { PositionComponent } from './position.component';
+import { GpsComponent } from './gps.component';
 
-describe('Component: Position', () => {
+describe('Component: Gps', () => {
   it('should create an instance', () => {
-    let component = new PositionComponent();
+    let component = new GpsComponent();
     expect(component).toBeTruthy();
   });
 });

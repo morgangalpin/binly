@@ -26,6 +26,6 @@ export class AppComponent {
 
   connect():void {
     this.socketService.get('test');
-    this.isConnected = !this.isConnected;
+    this.isConnected = true;
   }
 }
