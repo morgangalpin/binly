@@ -1,2 +1,0 @@
-# duckomatic
-Robot duck!

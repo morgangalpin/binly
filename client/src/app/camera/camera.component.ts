@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from "rxjs";
+
+import { CameraService } from './camera.service';
 
 @Component({
   selector: 'app-camera',
@@ -7,7 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CameraComponent implements OnInit {
 
-  constructor() { }
+  currentImageUrl: string = 'the default';
+
+  constructor(
+    private cameraService: CameraService
+  ) {
+    this.cameraService.onProcessCameraEvent((data) => {
+      console.log('CameraComponent.onProcessCameraEvent("%o")', data);
+      this.currentImageUrl = data.url + '/' + data.count;
+    });
+  }
 
   ngOnInit() {
   }

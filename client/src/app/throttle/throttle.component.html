@@ -1,9 +1,11 @@
-      <md-card>
-        <md-card-title-group>
-          <md-card-title>Throttle</md-card-title>
-          <md-card-subtitle>{{currentThrottle | number:'.1-1'}} km/h</md-card-subtitle>
-        </md-card-title-group>
-        <md-card-content>
-          <md-slider min="0" max="5" step="0.1" [(ngModel)]="currentThrottle"></md-slider>
-        </md-card-content>
-      </md-card>
+<md-card>
+  <md-card-title-group>
+    <md-card-title>Throttle</md-card-title>
+  </md-card-title-group>
+  <md-card-content>
+    Current: {{throttle | number:'1.0-0'}}
+  </md-card-content>
+  <md-card-actions>
+    <md-slider md-discrete md-vertical value= "0" md-discrete min="0" max="10" step="1" [ngModel]="throttle" (ngModelChange)="setThrottle($event)"></md-slider>
+  </md-card-actions>
+</md-card>

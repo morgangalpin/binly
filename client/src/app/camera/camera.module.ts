@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 
 import { CameraComponent } from './camera.component';
+import { CameraService } from './camera.service';
 
 @NgModule({
   imports: [
@@ -10,6 +11,9 @@ import { CameraComponent } from './camera.component';
     MaterialModule
   ],
   declarations: [CameraComponent],
+  providers: [
+    CameraService
+  ],
   exports: [CameraComponent]
 })
 export class CameraModule { }

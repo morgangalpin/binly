@@ -9,14 +9,34 @@ import { RudderService } from './rudder.service';
 })
 export class RudderComponent implements OnInit {
 
-    currentRudder: number = 0;
+    rudder: number;
+    direction: string;
 
     constructor(
         private rudderService: RudderService
-    ) {
-        // this.rudderService.onProcessRudderEvent((data) => { console.log('RudderComponent.onProcessRudderEvent("%o")', data); this.currentRudder = data.num; });
+    ) {}
+
+    setRudder(value: number) {
+        if (value != this.rudder) {
+            console.log("Changing rudder value from: " + this.rudder + " to " + value)
+            this.rudder = value;
+            this.updateDirection();
+            this.rudderService.setRudder(value);
+        }
+    }
+
+    // Update the direction value based on the current rudder value.
+    updateDirection() {
+        if (this.rudder > 0) {
+            this.direction = 'Right ' + this.rudder;
+        } else if (this.rudder < 0) {
+            this.direction = 'Left ' + -this.rudder;
+        } else {
+            this.direction = 'Center'
+        }
     }
 
     ngOnInit() {
+        this.setRudder(0);
     }
 }

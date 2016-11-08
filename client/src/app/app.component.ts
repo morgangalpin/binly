@@ -24,8 +24,8 @@ export class AppComponent {
     }, 200);
   }
 
-  connect():void {
-    this.socketService.get('test');
-    this.isConnected = true;
-  }
+  // connect():void {
+  //   this.socketService.get('test', 'AppComponent.connect()');
+  //   this.isConnected = true;
+  // }
 }

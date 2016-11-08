@@ -6,19 +6,15 @@ import { SocketService } from "../shared";
 export class ThrottleService {
 
     namespace:string = 'throttle';
-    throttleEvent:string = 'my_response';
+    throttleEvent:string = 'update';
 
     constructor(
         private socketService: SocketService
     ) {
-        this.socketService.get(this.namespace);
+        this.socketService.connect(this.namespace, 'ThrottleService.socketService');
     }
 
-    onProcessThrottleEvent(callback) : void {
-        console.log('ThrottleService.onProcessThrottleEvent("%s")', this.throttleEvent);
-        this.socketService.socket.on(this.throttleEvent, callback);
-    }
-
-    processEvent(currentThrottle:number): void {
+    setThrottle(value:number): void {
+        this.socketService.socket.emit(this.throttleEvent, { throttle: value });
     }
 }

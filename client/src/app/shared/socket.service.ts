@@ -13,32 +13,39 @@ export class SocketService {
     // private host: string = "http://192.168.1.64:8080";
     private host: string = environment.host;
     socket: SocketIOClient.Socket;
+    id: string;
 
     constructor() {}
 
-    // Get items observable
-    get(name: string): void {
+    // Get the connected socket.
+    connect(name: string, id: string): void {
         this.name = name;
+        this.id = id;
         let socketUrl = this.host + "/" + this.name;
+        console.log(`SocketService: Connecting to "${socketUrl}" on "${this.id}"`);
         this.socket = io.connect(socketUrl);
-        this.socket.on("connect", () => this.connect());
-        this.socket.on("disconnect", () => this.disconnect());
+        this.socket.on("connect", () => this.on_connect());
+        this.socket.on("disconnect", () => this.on_disconnect());
         this.socket.on("error", (error: string) => {
             console.log(`ERROR: "${error}" (${socketUrl})`);
         });
+    }
 
+    // Bind an event handler to an event name.
+    on(eventName: string, callback) {
+        this.socket.on(eventName, callback);
     }
 
     // Handle connection opening
-    private connect() {
-        // console.log(`Connected to "${this.name}"`);
+    private on_connect() {
+        console.log(`Connected to "${this.name}"`);
 
         // Request initial list when connected
         // this.socket.emit("list");
     }
 
     // Handle connection closing
-    private disconnect() {
-        // console.log(`Disconnected from "${this.name}"`);
+    private on_disconnect() {
+        console.log(`Disconnected from "${this.name}"`);
     }
 }

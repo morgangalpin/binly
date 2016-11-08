@@ -1,11 +1,12 @@
-      <md-card>
-        <md-card-title-group>
-          <md-card-title>Gps</md-card-title>
-          <md-card-subtitle>
-            Longitude: 49.8880&deg; N<br /> Latitude: 119.4960&deg; W
-          </md-card-subtitle>
-        </md-card-title-group>
-        <md-card-content>
-          <img md-card-md-image src="./assets/map.png">
-        </md-card-content>
-      </md-card>
+<md-card>
+  <md-card-title-group>
+    <md-card-title>Gps</md-card-title>
+    <md-card-subtitle>
+      Latitude: {{latitude | number : '1.6-6'}}&deg;<br />
+      Longitude: {{longitude | number : '1.6-6'}}&deg;
+    </md-card-subtitle>
+  </md-card-title-group>
+  <md-card-content>
+    <img md-card-md-image src="./assets/map.png">
+  </md-card-content>
+</md-card>

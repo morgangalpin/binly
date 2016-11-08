@@ -6,15 +6,15 @@ import { SocketService } from "../shared";
 export class RudderService {
 
     namespace:string = 'rudder';
-    rudderEvent:string = 'my_response';
+    rudderEvent:string = 'update';
 
     constructor(
         private socketService: SocketService
     ) {
-        this.socketService.get(this.namespace);
+        this.socketService.connect(this.namespace, 'RudderService.socketService');
     }
-    
+
     setRudder(value:number): void {
-        this.socketService.socket.emit(this.rudderEvent, { data: 'rudder: ' + value });
+        this.socketService.socket.emit(this.rudderEvent, { rudder: value });
     }
 }

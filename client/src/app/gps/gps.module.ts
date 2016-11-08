@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 
 import { GpsComponent } from './gps.component';
+import { GpsService } from './gps.service';
 
 @NgModule({
   imports: [
@@ -10,6 +11,9 @@ import { GpsComponent } from './gps.component';
     MaterialModule
   ],
   declarations: [GpsComponent],
+  providers: [
+    GpsService
+  ],
   exports: [GpsComponent]
 })
 export class GpsModule { }
