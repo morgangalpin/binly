@@ -14,3 +14,8 @@ run:
 
 test:
 	paver test_all
+
+update:
+	git fetch
+	git submodule update
+	pip install -r requirements.txt

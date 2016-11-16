@@ -1,0 +1,5 @@
+# Build requirements
+--requirement requirements-dev.txt
+
+# Servo hat requirements
+adafruit-pca9685>=1.0.1

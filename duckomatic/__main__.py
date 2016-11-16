@@ -49,11 +49,15 @@ URL: <{url}>
         '-d', '--debug',
         action='store_true',
         dest='debug')
+    arg_parser.add_argument(
+        '-f', '--fake',
+        action='store_true',
+        dest='fake')
 
     args = arg_parser.parse_args(args=argv[1:])
 
     api_controller = ApiController()
-    platform_controller = PlatformController()
+    platform_controller = PlatformController(fake=args.fake)
     start_resources = os.environ.get('WERKZEUG_RUN_MAIN') or not args.debug
     if start_resources:
         logging.basicConfig(level=logging.DEBUG)

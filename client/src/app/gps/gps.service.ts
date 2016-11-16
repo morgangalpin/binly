@@ -5,6 +5,7 @@ import { SocketService } from "../shared";
 @Injectable()
 export class GpsService {
 
+    socket: SocketIOClient.Socket;
     namespace:string = 'gps';
     gpsEvent:string = 'feed';
 
@@ -12,12 +13,12 @@ export class GpsService {
         private socketService: SocketService
     ) {
         console.log('GpsService.constructor()');
-        this.socketService.connect(this.namespace, 'GpsService.socketService');
+        this.socket = this.socketService.get(this.namespace, 'GpsService.socketService');
     }
 
     onProcessGpsEvent(callback) : void {
         console.log('GpsService.onProcessGpsEvent("%s")', this.gpsEvent);
-        this.socketService.on(this.gpsEvent, callback);
+        this.socket.on(this.gpsEvent, callback);
     }
 
     processEvent(currentGps:number): void {

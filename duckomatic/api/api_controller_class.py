@@ -34,7 +34,6 @@ class ApiController(object):
         self._app.route('/<path:filename>', methods=['GET'])(self.serve_static)
 
         self._socketio = SocketIO(self._app, async_mode=self._async_mode)
-        # print("async_mode: %s" % self._socketio.async_mode)
         self.add_namespace_resource('camera', Camera('/camera'))
         self.add_namespace_resource('gps', Gps('/gps'))
         self.add_namespace_resource('rudder', Rudder('/rudder'))
@@ -54,9 +53,7 @@ class ApiController(object):
             logging.debug("Starting api resources")
             for _, resource in self._resources.items():
                 resource.start()
-            # self._socketio.start_background_task(
-            #     target=background_thread, socketio=self._socketio)
-        self._socketio.run(self._app, debug=debug)  # , host='0.0.0.0'
+        self._socketio.run(self._app, debug=debug, host='0.0.0.0')
 
     def stop(self):
         for _, resource in self._resources.items():

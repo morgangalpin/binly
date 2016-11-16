@@ -5,16 +5,18 @@ import { SocketService } from "../shared";
 @Injectable()
 export class ThrottleService {
 
+    socket: SocketIOClient.Socket;
     namespace:string = 'throttle';
     throttleEvent:string = 'update';
 
     constructor(
         private socketService: SocketService
     ) {
-        this.socketService.connect(this.namespace, 'ThrottleService.socketService');
+        this.socket = this.socketService.get(this.namespace, 'ThrottleService.socketService');
     }
 
     setThrottle(value:number): void {
-        this.socketService.socket.emit(this.throttleEvent, { throttle: value });
+        console.log('Sending throttle update on ' + this.socket.id)
+        this.socket.emit(this.throttleEvent, { throttle: value });
     }
 }

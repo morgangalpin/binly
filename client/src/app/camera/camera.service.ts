@@ -5,6 +5,7 @@ import { SocketService } from "../shared";
 @Injectable()
 export class CameraService {
 
+    socket: SocketIOClient.Socket;
     namespace:string = 'camera';
     cameraEvent:string = 'feed';
 
@@ -12,12 +13,12 @@ export class CameraService {
         private socketService: SocketService
     ) {
         console.log('CameraService.constructor()');
-        this.socketService.connect(this.namespace, 'CameraService.socketService');
+        this.socket = this.socketService.get(this.namespace, 'CameraService.socketService');
     }
 
     onProcessCameraEvent(callback) : void {
         console.log('CameraService.onProcessCameraEvent("%s")', this.cameraEvent);
-        this.socketService.on(this.cameraEvent, callback);
+        this.socket.on(this.cameraEvent, callback);
     }
 
     processEvent(currentCamera:number): void {
