@@ -1,4 +1,4 @@
-# import logging
+import logging
 import threading
 import time
 from duckomatic.utils.publisher import Publisher
@@ -78,3 +78,27 @@ class Resource(object):
             #               (self.__class__))
             self._publisher.update(topic, data)
             time.sleep(sleep_time)
+
+    @staticmethod
+    def validate_value(label, value, min_value, max_value):
+        """ Validate the value value is between min_value and max_value.
+        If it is beyond one of them, then return the min or max value,
+        whichever is closest."""
+        if value < min_value:
+            logging.warning('%s value %d less than minimum value of %d. \
+Setting to minimum.' % (label, value, min_value))
+            return min_value
+        if value > max_value:
+            logging.warning('%s value %d greater than maximum value of \
+%d. Setting to maximum.' % (label, value, max_value))
+            return max_value
+        return value
+
+    @staticmethod
+    def scale_value(source_value, min_source_value, max_source_value,
+                    target_min, target_max):
+        """ Calcuate the target value for the given source_value. """
+        return target_min + \
+            int((float(source_value - min_source_value)
+                 / float(max_source_value - min_source_value))
+                * (target_max - target_min))

@@ -25,6 +25,9 @@ class Rudder(Resource):
             self._pwm = Adafruit_PCA9685.PCA9685()
             self._pwm.set_pwm_freq(self.SERVO_PWM_FREQ_HZ)
 
+    def start(self):
+        self.start_processing_incoming_messages()
+
     def handle_incoming_message(self, topic, data):
         logging.debug('Received RUDDER message on topic "%s": %s' %
                       (topic, data))
@@ -35,11 +38,12 @@ class Rudder(Resource):
                          self.RUDDER_KEY)
             return
         # Validate the requested rudder value.
-        rudder = self.validate_rudder(
+        rudder = self.validate_value(
+            'Rudder',
             data[self.RUDDER_KEY], self.MIN_RUDDER, self.MAX_RUDDER)
 
         # Make the servo move.
-        self._pwm.set_pwm(self.SERVO_CHANNEL, 0, self.get_servo_value(
+        self._pwm.set_pwm(self.SERVO_CHANNEL, 0, self.scale_value(
             rudder, self.MIN_RUDDER, self.MAX_RUDDER, self.SERVO_MIN,
             self.SERVO_MAX))
 
@@ -62,9 +66,6 @@ Setting to minimum.' % (rudder, min_rudder))
         return servo_min + \
             int((float(rudder - min_rudder) / float(max_rudder - min_rudder))
                 * (servo_max - servo_min))
-
-    def start(self):
-        self.start_processing_incoming_messages()
 
 
 class FakePCA9685(object):

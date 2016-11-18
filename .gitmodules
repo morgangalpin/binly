@@ -1,3 +1,6 @@
 [submodule "submodules/Adafruit_Python_PCA9685"]
 	path = submodules/Adafruit_Python_PCA9685
 	url = https://github.com/adafruit/Adafruit_Python_PCA9685.git
+[submodule "submodules/Adafruit-Motor-HAT-Python-Library"]
+	path = submodules/Adafruit-Motor-HAT-Python-Library
+	url = https://github.com/adafruit/Adafruit-Motor-HAT-Python-Library.git

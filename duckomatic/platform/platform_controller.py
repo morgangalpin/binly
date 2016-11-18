@@ -32,7 +32,7 @@ class PlatformController(object):
         self.add_resource('camera', Camera())
         self.add_resource('gps', Gps())
         self.add_resource('rudder', Rudder(fake=self.fake))
-        self.add_resource('throttle', Throttle())
+        self.add_resource('throttle', Throttle(fake=self.fake))
 
     def start(self):
         for _, resource in self._resources.items():
