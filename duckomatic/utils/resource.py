@@ -56,11 +56,7 @@ class Resource(object):
 
     def process_incoming_messages(self):
         while not self.stopped():
-            # logging.debug("%s: Getting next published message" %
-            #               (self.__class__))
             (topic, data) = self._subscriber.get_update()
-            # logging.debug("%s: Received published message. Handling it." %
-            #               (self.__class__))
             self.handle_incoming_message(topic, data)
 
     def start_polling_for_messages_to_publish(self, frequency_per_second):
@@ -69,15 +65,19 @@ class Resource(object):
             (frequency_per_second,))
 
     def poll_for_messages_to_publish(self, frequency_per_second):
-        sleep_time = 1.0 / frequency_per_second
+        max_sleep_time = 1.0 / frequency_per_second
         while not self.stopped():
-            # logging.debug("%s: Getting next message to publish" %
-            #               (self.__class__))
+            t0 = time.time()
             (topic, data) = self.get_message_to_publish()
-            # logging.debug("%s: Received message to publish. Publishing it." %
-            #               (self.__class__))
+            t1 = time.time()
             self._publisher.update(topic, data)
-            time.sleep(sleep_time)
+            t2 = time.time()
+            logging.debug("%s: get_message_to_publish() took %fs. \
+Publisher.update() took %fs. Current time: %f" %
+                          (self.__class__, t1 - t0, t2 - t1, t2))
+            sleep_time = max_sleep_time - (time.time() - t0)
+            if sleep_time > 0:
+                time.sleep(sleep_time)
 
     @staticmethod
     def validate_value(label, value, min_value, max_value):

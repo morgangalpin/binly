@@ -1,7 +1,7 @@
 all: build run
 
 build:
-	cd client; ng build
+	cd client; ng build --base-href /static/
 
 clean: clean-client
 	find . -name \*.pyc -delete

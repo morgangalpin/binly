@@ -1,6 +1,7 @@
 import eventlet
 import logging
-from flask import (Flask, render_template,
+import os
+from flask import (Flask,
                    send_from_directory)
 from flask_socketio import (SocketIO)
 from resources.camera import Camera
@@ -16,8 +17,10 @@ class ApiController(object):
     """
     Starts up and handles the websocket api.
     """
+    CAMERA1_IMAGE_PATH = '/camera1/image'
 
-    def __init__(self):
+    def __init__(self, camera1_image_dir, camera_image_format='%d.jpg',
+                 camera1_image_max_age_seconds=60):
         super(ApiController, self).__init__()
 
         # Set this variable to "threading", "eventlet" or "gevent" to test the
@@ -27,26 +30,43 @@ class ApiController(object):
 
         self._resources = {}
 
-        self._static_dir = '../../client/static'
-        self._app = Flask(__name__, template_folder=self._static_dir)
+        self._camera_image_format = camera_image_format
+        self._static_dir = os.path.join(
+            os.path.dirname(os.path.dirname(
+                os.path.dirname(os.path.abspath(__file__)))),
+            'client', 'static')
+        self._camera1_image_dir = camera1_image_dir
+        self._camera1_image_max_age_seconds = camera1_image_max_age_seconds
+        self._app = Flask(
+            __name__,
+            static_folder=self._static_dir,
+            static_url_path='/static')
         self._app.config['SECRET_KEY'] = 'Duckomatic!'
-        self._app.route('/', methods=['GET'])(self.index)
-        self._app.route('/<path:filename>', methods=['GET'])(self.serve_static)
+        self._app.add_url_rule('/', 'index', self.index)
+        self._app.add_url_rule(
+            os.path.join(self.CAMERA1_IMAGE_PATH, '<int:imagenum>'),
+            'camera1', self.serve_camera_image)
 
         self._socketio = SocketIO(self._app, async_mode=self._async_mode)
-        self.add_namespace_resource('camera', Camera('/camera'))
+        self.add_namespace_resource('camera', Camera(
+            self.CAMERA1_IMAGE_PATH, '/camera'))
         self.add_namespace_resource('gps', Gps('/gps'))
         self.add_namespace_resource('rudder', Rudder('/rudder'))
         self.add_namespace_resource('throttle', Throttle('/throttle'))
 
     # @app.route('/')
     def index(self):
-        return render_template('index.html',
-                               async_mode=self._socketio.async_mode)
+        return send_from_directory(self._static_dir, 'index.html')
 
-    # @app.route('/<path:filename>')
-    def serve_static(self, filename):
-        return send_from_directory(self._static_dir, filename)
+    # @app.route('/camera1/image/<int:imagenum>')
+    def serve_camera_image(self, imagenum):
+        filename = self._camera_image_format % imagenum
+        logging.debug("Sending camera image: %s" % filename)
+        return send_from_directory(
+            self._camera1_image_dir,
+            filename,
+            cache_timeout=self._camera1_image_max_age_seconds,
+            add_etags=False, mimetype='image/jpeg')
 
     def start(self, start_resources, debug=False):
         if start_resources:

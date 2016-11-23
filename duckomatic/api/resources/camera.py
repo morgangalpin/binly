@@ -1,4 +1,5 @@
 import logging
+import os
 # from flask import session, request
 from flask_socketio import (Namespace, emit)
 # , join_room, leave_room, close_room,
@@ -7,16 +8,24 @@ from duckomatic.utils.resource import Resource
 
 
 class Camera(Resource, Namespace):
+    URL_KEY = 'url'
+    IMAGE_ID_KEY = 'image_id'
 
-    def __init__(self, *vargs, **kwargs):
+    def __init__(self, image_path, *vargs, **kwargs):
         """ Constructor.
         Initialize the parent classes.
         """
         super(Camera, self).__init__(*vargs, **kwargs)
         self._client_count = 0
+        self._image_path = image_path
 
     def handle_incoming_message(self, topic, data):
         if self._client_count > 0:
+            # Add the image URL value to the data.
+            if self.IMAGE_ID_KEY in data:
+                data[self.URL_KEY] = os.path.join(
+                    self._image_path, str(data[self.IMAGE_ID_KEY]))
+
             logging.debug('%s: Client count: %d, Sending: \
 topic: "%s", \
 data: "%s"' %

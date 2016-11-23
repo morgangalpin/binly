@@ -2,6 +2,7 @@
 --requirement requirements-dev.txt
 
 # Raspberry pi requirements.
+picamera[array]>=1.12
 
 # Servo hat requirements.
 adafruit-pca9685>=1.0.1
