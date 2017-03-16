@@ -39,6 +39,7 @@ class Throttle(Resource):
         atexit.register(turn_off_motors)
 
     def start(self):
+        self._motor.run(self._motor_commands.FORWARD)
         self.start_processing_incoming_messages()
 
     def handle_incoming_message(self, topic, data):
@@ -47,8 +48,8 @@ class Throttle(Resource):
 
         # Ensure the throttle value is given in the data.
         if self.THROTTLE_KEY not in data:
-            logging.info('Throttle data does not contain %s key' %
-                         self.THROTTLE_KEY)
+            logging.warning('Throttle data does not contain %s key' %
+                            self.THROTTLE_KEY)
             return
         # Validate the requested throttle value.
         throttle = self.validate_value(

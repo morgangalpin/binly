@@ -47,8 +47,7 @@ class ApiController(object):
             os.path.join(self.CAMERA1_IMAGE_PATH, '<int:imagenum>'),
             'camera1', self.serve_camera_image)
 
-        self._socketio = SocketIO(
-            self._app, async_mode=self._async_mode)
+        self._socketio = SocketIO(self._app, async_mode=self._async_mode)
         self.add_namespace_resource('camera', Camera(
             self.CAMERA1_IMAGE_PATH, '/camera'))
         self.add_namespace_resource('gps', Gps('/gps'))

@@ -75,7 +75,8 @@ URL: <{url}>
         camera1_image_max_age_seconds=CAMERA1_MAX_IMAGE_AGE_SECONDS)
     start_resources = os.environ.get('WERKZEUG_RUN_MAIN') or not args.debug
     if start_resources:
-        logging.basicConfig(level=logging.DEBUG)
+        logging_level = logging.WARNING if args.debug else logging.DEBUG
+        logging.basicConfig(level=logging_level)
         logging.info('startup: pid %d is the active werkzeug' % os.getpid())
         logging.info('debug = %s' % args.debug)
 

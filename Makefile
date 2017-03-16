@@ -13,7 +13,7 @@ run:
 	python -m duckomatic
 
 fake:
-	python -m duckomatic -f
+	python -m duckomatic -f -d
 
 test:
 	paver test_all

@@ -42,10 +42,10 @@ subscribe_from_platform_resource(
     socketio, platform_controller, Camera('/camera'), 'camera', 'feed')
 # subscribe_from_platform_resource(
 #     socketio, platform_controller, Gps('/gps'), 'gps', 'feed')
-subscribe_to_platform_resource(
-    socketio, platform_controller, Rudder('/rudder'), 'rudder', 'feed')
-subscribe_to_platform_resource(
-    socketio, platform_controller, Throttle('/throttle'), 'throttle', 'feed')
+# subscribe_to_platform_resource(
+#     socketio, platform_controller, Rudder('/rudder'), 'rudder', 'feed')
+# subscribe_to_platform_resource(
+#     socketio, platform_controller, Throttle('/throttle'), 'throttle', 'feed')
 
 
 @app.route('/')
