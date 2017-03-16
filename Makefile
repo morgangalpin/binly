@@ -12,6 +12,9 @@ clean-client:
 run:
 	python -m duckomatic
 
+fake:
+	python -m duckomatic -f
+
 test:
 	paver test_all
 

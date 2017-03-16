@@ -47,7 +47,8 @@ class ApiController(object):
             os.path.join(self.CAMERA1_IMAGE_PATH, '<int:imagenum>'),
             'camera1', self.serve_camera_image)
 
-        self._socketio = SocketIO(self._app, async_mode=self._async_mode)
+        self._socketio = SocketIO(
+            self._app, async_mode=self._async_mode)
         self.add_namespace_resource('camera', Camera(
             self.CAMERA1_IMAGE_PATH, '/camera'))
         self.add_namespace_resource('gps', Gps('/gps'))
@@ -61,7 +62,7 @@ class ApiController(object):
     # @app.route('/camera1/image/<int:imagenum>')
     def serve_camera_image(self, imagenum):
         filename = self._camera_image_format % imagenum
-        logging.debug("Sending camera image: %s" % filename)
+        # logging.debug("Sending camera image: %s" % filename)
         return send_from_directory(
             self._camera1_image_dir,
             filename,
@@ -73,6 +74,7 @@ class ApiController(object):
             logging.debug("Starting api resources")
             for _, resource in self._resources.items():
                 resource.start()
+        logging.debug("socketio debug = %s", debug)
         self._socketio.run(self._app, debug=debug, host='0.0.0.0')
 
     def stop(self):

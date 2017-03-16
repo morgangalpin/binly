@@ -77,6 +77,7 @@ URL: <{url}>
     if start_resources:
         logging.basicConfig(level=logging.DEBUG)
         logging.info('startup: pid %d is the active werkzeug' % os.getpid())
+        logging.info('debug = %s' % args.debug)
 
         print(epilog)
 

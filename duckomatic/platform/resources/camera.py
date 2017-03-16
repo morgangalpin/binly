@@ -87,4 +87,5 @@ class FakePiCamera(object):
     def capture(
             self, output, format=None, use_video_port=False, resize=None,
             splitter_port=0, bayer=False, **options):
-        logging.debug('FakePiCamera.capture(...)')
+        # logging.debug('FakePiCamera.capture(...)')
+        pass

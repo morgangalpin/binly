@@ -26,10 +26,10 @@ class Camera(Resource, Namespace):
                 data[self.URL_KEY] = os.path.join(
                     self._image_path, str(data[self.IMAGE_ID_KEY]))
 
-            logging.debug('%s: Client count: %d, Sending: \
-topic: "%s", \
-data: "%s"' %
-                          (self.namespace, self._client_count, topic, data))
+#             logging.debug('%s: Client count: %d, Sending: \
+# topic: "%s", \
+# data: "%s"' %
+#                           (self.namespace, self._client_count, topic, data))
             self.socketio.emit(
                 topic, data, namespace=self.namespace)
 

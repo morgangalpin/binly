@@ -69,12 +69,12 @@ class Resource(object):
         while not self.stopped():
             t0 = time.time()
             (topic, data) = self.get_message_to_publish()
-            t1 = time.time()
+            # t1 = time.time()
             self._publisher.update(topic, data)
-            t2 = time.time()
-            logging.debug("%s: get_message_to_publish() took %fs. \
-Publisher.update() took %fs. Current time: %f" %
-                          (self.__class__, t1 - t0, t2 - t1, t2))
+            # t2 = time.time()
+#             logging.debug("%s: get_message_to_publish() took %fs. \
+# Publisher.update() took %fs. Current time: %f" %
+#                           (self.__class__, t1 - t0, t2 - t1, t2))
             sleep_time = max_sleep_time - (time.time() - t0)
             if sleep_time > 0:
                 time.sleep(sleep_time)
@@ -97,7 +97,7 @@ Setting to minimum.' % (label, value, min_value))
     @staticmethod
     def scale_value(source_value, min_source_value, max_source_value,
                     target_min, target_max):
-        """ Calcuate the target value for the given source_value. """
+        """ Calculate the target value for the given source_value. """
         return target_min + \
             int((float(source_value - min_source_value)
                  / float(max_source_value - min_source_value))
