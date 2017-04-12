@@ -12,7 +12,7 @@ class Throttle(Resource):
     MIN_THROTTLE = 0
     MAX_THROTTLE = 10
     MOTOR_MIN = 0
-    MOTOR_MAX = 255
+    MOTOR_MAX = 200
 
     def __init__(self, fake=False, *vargs, **kwargs):
         super(Throttle, self).__init__(*vargs, **kwargs)
