@@ -42,6 +42,9 @@ class Rudder(Resource):
             'Rudder',
             data[self.RUDDER_KEY], self.MIN_RUDDER, self.MAX_RUDDER)
 
+        # Reverse the rudder value because the servo is backwards.
+        rudder = -rudder
+
         # Make the servo move.
         self._pwm.set_pwm(self.SERVO_CHANNEL, 0, self.scale_value(
             rudder, self.MIN_RUDDER, self.MAX_RUDDER, self.SERVO_MIN,
@@ -59,13 +62,6 @@ Setting to minimum.' % (rudder, min_rudder))
 %d. Setting to maximum.' % (rudder, max_rudder))
             rudder = max_rudder
         return rudder
-
-    @staticmethod
-    def get_servo_value(rudder, min_rudder, max_rudder, servo_min, servo_max):
-        """ Calcuate the servo value for the given rudder value. """
-        return servo_min + \
-            int((float(rudder - min_rudder) / float(max_rudder - min_rudder))
-                * (servo_max - servo_min))
 
 
 class FakePCA9685(object):
