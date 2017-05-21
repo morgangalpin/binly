@@ -1,7 +1,7 @@
 import logging
 import os
 import time
-from duckomatic.utils.resource import Resource
+from binly.utils.resource import Resource
 
 
 class Camera(Resource):

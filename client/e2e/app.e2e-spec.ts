@@ -1,10 +1,10 @@
-import { DuckomaticPage } from './app.po';
+import { BinlyPage } from './app.po';
 
-describe('duckomatic App', function() {
-  let page: DuckomaticPage;
+describe('binly App', function() {
+  let page: BinlyPage;
 
   beforeEach(() => {
-    page = new DuckomaticPage();
+    page = new BinlyPage();
   });
 
   it('should display message saying app works', () => {

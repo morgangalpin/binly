@@ -1,4 +1,4 @@
-Duckomatic
+Binly
 ==========
 
 Contents:

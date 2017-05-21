@@ -41,7 +41,7 @@ class ApiController(object):
             __name__,
             static_folder=self._static_dir,
             static_url_path='/static')
-        self._app.config['SECRET_KEY'] = 'Duckomatic!'
+        self._app.config['SECRET_KEY'] = 'Binly!'
         self._app.add_url_rule('/', 'index', self.index)
         self._app.add_url_rule(
             os.path.join(self.CAMERA1_IMAGE_PATH, '<int:imagenum>'),

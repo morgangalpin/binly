@@ -22,7 +22,7 @@ import sys
 sys.path.insert(0, os.path.abspath('../..'))
 
 # Import project metadata
-from duckomatic import metadata
+from binly import metadata
 
 # -- General configuration ----------------------------------------------------
 

@@ -10,10 +10,10 @@ import logging
 import os
 import sys
 
-import duckomatic.metadata as metadata
+import binly.metadata as metadata
 
-from duckomatic.api.api_controller_class import ApiController
-from duckomatic.platform.platform_controller import PlatformController
+from binly.api.api_controller_class import ApiController
+from binly.platform.platform_controller import PlatformController
 
 DATA_DIR = '/mnt/ramdisk/data'
 CAMERA1_IMAGE_DIR = os.path.join(DATA_DIR, 'camera1', 'image')

@@ -7,7 +7,7 @@
 import pytest
 parametrize = pytest.mark.parametrize
 
-from duckomatic.utils.resource import (Resource)
+from binly.utils.resource import (Resource)
 
 
 class TestResource(object):

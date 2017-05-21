@@ -4,7 +4,7 @@ import os
 from flask_socketio import (Namespace, emit)
 # , join_room, leave_room, close_room,
 #                         rooms, disconnect)
-from duckomatic.utils.resource import Resource
+from binly.utils.resource import Resource
 
 
 class Camera(Resource, Namespace):

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Duckomatic is the software needed to run robotic duck. It is designed for
-software control of a duck built like a remote-controlled boat."""
+"""Binly is the software needed to run a robot that puts objects into
+bins. It is designed for software control of a wheeled robot with
+an arm."""
 
-from duckomatic import metadata
+from binly import metadata
 
 
 __version__ = metadata.version

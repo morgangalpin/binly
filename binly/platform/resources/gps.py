@@ -1,4 +1,4 @@
-from duckomatic.utils.resource import Resource
+from binly.utils.resource import Resource
 
 
 class Gps(Resource):

@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class DuckomaticPage {
+export class BinlyPage {
   navigateTo() {
     return browser.get('/');
   }

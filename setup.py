@@ -35,16 +35,16 @@ except ImportError:
 sys.path.insert(0, os.path.abspath('.'))
 
 # Constants
-CODE_DIRECTORY = 'duckomatic'
+CODE_DIRECTORY = 'binly'
 DOCS_DIRECTORY = 'docs'
 TESTS_DIRECTORY = 'tests'
 PYTEST_FLAGS = ['--doctest-modules']
 
 # Import metadata. Normally this would just be:
 #
-#     from duckomatic import metadata
+#     from binly import metadata
 #
-# However, when we do this, we also import `duckomatic/__init__.py'. If this
+# However, when we do this, we also import `binly/__init__.py'. If this
 # imports names from some other modules and these modules have third-party
 # dependencies that need installing (which happens after this file is run), the
 # script will crash. What we do instead is to load the metadata module by path
@@ -271,11 +271,11 @@ setup_dict = dict(
     zip_safe=False,  # don't use eggs
     entry_points={
         'console_scripts': [
-            'duckomatic_cli = duckomatic.__main__:entry_point'
+            'binly_cli = binly.__main__:entry_point'
         ],
         # if you have a gui, use this
         # 'gui_scripts': [
-        #     'duckomatic_gui = duckomatic.gui:entry_point'
+        #     'binly_gui = binly.gui:entry_point'
         # ]
     }
 )

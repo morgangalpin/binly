@@ -2,7 +2,7 @@ import atexit
 import logging
 from os.path import (dirname, abspath, join)
 import sys
-from duckomatic.utils.resource import Resource
+from binly.utils.resource import Resource
 
 
 class Throttle(Resource):

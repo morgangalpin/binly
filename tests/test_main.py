@@ -8,10 +8,10 @@
 import pytest
 parametrize = pytest.mark.parametrize
 
-# from duckomatic import metadata
+# from binly import metadata
 # TODO: Importing this is broken because six.moves.urllib gives
 # an import error.
-# from duckomatic.__main__ import main
+# from binly.__main__ import main
 
 
 class TestMain(object):
