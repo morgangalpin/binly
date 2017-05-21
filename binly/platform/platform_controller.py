@@ -3,7 +3,7 @@ import threading
 
 from binly.platform.resources.camera import Camera
 from binly.platform.resources.gps import Gps
-from binly.platform.resources.rudder import Rudder
+from binly.platform.resources.steering import Steering
 from binly.platform.resources.throttle import Throttle
 
 
@@ -38,7 +38,7 @@ class PlatformController(object):
             image_format=camera_image_format,
             max_image_age_seconds=camera1_image_max_age_seconds))
         self.add_resource('gps', Gps())
-        self.add_resource('rudder', Rudder(fake=self.fake))
+        self.add_resource('steering', Steering(fake=self.fake))
         self.add_resource('throttle', Throttle(fake=self.fake))
 
     def start(self):

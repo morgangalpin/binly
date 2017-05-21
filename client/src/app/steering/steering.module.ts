@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { SocketService } from '../shared';
 
-import { RudderComponent } from './rudder.component';
-import { RudderService } from './rudder.service';
+import { SteeringComponent } from './steering.component';
+import { SteeringService } from './steering.service';
 
 @NgModule({
   imports: [
@@ -13,8 +13,8 @@ import { RudderService } from './rudder.service';
     FormsModule,
     MaterialModule
   ],
-  declarations: [RudderComponent],
-  exports: [RudderComponent],
-  providers: [RudderService, SocketService]
+  declarations: [SteeringComponent],
+  exports: [SteeringComponent],
+  providers: [SteeringService, SocketService]
 })
-export class RudderModule { }
+export class SteeringModule { }

@@ -5,13 +5,13 @@ from flask_socketio import (Namespace, emit)
 from binly.utils.resource import Resource
 
 
-class Rudder(Resource, Namespace):
+class Steering(Resource, Namespace):
 
     def __init__(self, *vargs, **kwargs):
         """ Constructor.
         Initialize the parent classes.
         """
-        super(Rudder, self).__init__(*vargs, **kwargs)
+        super(Steering, self).__init__(*vargs, **kwargs)
         self._client_count = 0
 
     def on_update(self, data):
@@ -37,7 +37,7 @@ class Rudder(Resource, Namespace):
     #     join_room(message['room'])
     #     session['receive_count'] = session.get('receive_count', 0) + 1
     #     emit('my_response',
-    #          {'data': 'In Rudder rooms: ' + ', '.join(rooms()),
+    #          {'data': 'In Steering rooms: ' + ', '.join(rooms()),
     #           'count': session['receive_count']})
 
     # def on_leave(self, message):

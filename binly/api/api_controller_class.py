@@ -6,7 +6,7 @@ from flask import (Flask,
 from flask_socketio import (SocketIO)
 from resources.camera import Camera
 from resources.gps import Gps
-from resources.rudder import Rudder
+from resources.steering import Steering
 from resources.throttle import Throttle
 
 logging.basicConfig(level=logging.DEBUG)
@@ -51,7 +51,7 @@ class ApiController(object):
         self.add_namespace_resource('camera', Camera(
             self.CAMERA1_IMAGE_PATH, '/camera'))
         self.add_namespace_resource('gps', Gps('/gps'))
-        self.add_namespace_resource('rudder', Rudder('/rudder'))
+        self.add_namespace_resource('steering', Steering('/steering'))
         self.add_namespace_resource('throttle', Throttle('/throttle'))
 
     # @app.route('/')

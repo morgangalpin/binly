@@ -4,17 +4,17 @@ import sys
 from binly.utils.resource import Resource
 
 
-class Rudder(Resource):
+class Steering(Resource):
     SERVO_MIN = 204  # Min pulse length out of 4096.
     SERVO_MAX = 410  # Max pulse length out of 4096.
     SERVO_CHANNEL = 0
     SERVO_PWM_FREQ_HZ = 50
-    RUDDER_KEY = 'rudder'
+    RUDDER_KEY = 'steering'
     MIN_RUDDER = -5
     MAX_RUDDER = 5
 
     def __init__(self, fake=False, *vargs, **kwargs):
-        super(Rudder, self).__init__(*vargs, **kwargs)
+        super(Steering, self).__init__(*vargs, **kwargs)
         if fake:
             self._pwm = FakePCA9685()
         else:
@@ -32,36 +32,36 @@ class Rudder(Resource):
         logging.debug('Received RUDDER message on topic "%s": %s' %
                       (topic, data))
 
-        # Ensure the rudder value is given in the data.
+        # Ensure the steering value is given in the data.
         if self.RUDDER_KEY not in data:
-            logging.info('Rudder data does not contain %s key' %
+            logging.info('Steering data does not contain %s key' %
                          self.RUDDER_KEY)
             return
-        # Validate the requested rudder value.
-        rudder = self.validate_value(
-            'Rudder',
+        # Validate the requested steering value.
+        steering = self.validate_value(
+            'Steering',
             data[self.RUDDER_KEY], self.MIN_RUDDER, self.MAX_RUDDER)
 
-        # Reverse the rudder value because the servo is backwards.
-        rudder = -rudder
+        # Reverse the steering value because the servo is backwards.
+        steering = -steering
 
         # Make the servo move.
         self._pwm.set_pwm(self.SERVO_CHANNEL, 0, self.scale_value(
-            rudder, self.MIN_RUDDER, self.MAX_RUDDER, self.SERVO_MIN,
+            steering, self.MIN_RUDDER, self.MAX_RUDDER, self.SERVO_MIN,
             self.SERVO_MAX))
 
     @staticmethod
-    def validate_rudder(rudder, min_rudder, max_rudder):
-        """ Validate the rudder value is between min_rudder and max_rudder. """
-        if rudder < min_rudder:
-            logging.warning('Rudder value %d less than minimum value of %d. \
-Setting to minimum.' % (rudder, min_rudder))
-            rudder = min_rudder
-        if rudder > max_rudder:
-            logging.warning('Rudder value %d greater than maximum value of \
-%d. Setting to maximum.' % (rudder, max_rudder))
-            rudder = max_rudder
-        return rudder
+    def validate_steering(steering, min_steering, max_steering):
+        """ Validate the steering value is between min_steering and max_steering. """
+        if steering < min_steering:
+            logging.warning('Steering value %d less than minimum value of %d. \
+Setting to minimum.' % (steering, min_steering))
+            steering = min_steering
+        if steering > max_steering:
+            logging.warning('Steering value %d greater than maximum value of \
+%d. Setting to maximum.' % (steering, max_steering))
+            steering = max_steering
+        return steering
 
 
 class FakePCA9685(object):
