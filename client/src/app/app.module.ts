@@ -22,7 +22,7 @@ import { ThrottleModule } from './throttle/throttle.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
 
     SharedModule,
 
