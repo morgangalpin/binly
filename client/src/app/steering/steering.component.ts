@@ -10,7 +10,7 @@ import { SteeringService } from './steering.service';
 export class SteeringComponent implements OnInit {
 
     steering: number;
-    direction: string;
+    label: string;
 
     constructor(
         private steeringService: SteeringService
@@ -20,19 +20,19 @@ export class SteeringComponent implements OnInit {
         if (value != this.steering) {
             console.log("Changing steering value from: " + this.steering + " to " + value)
             this.steering = value;
-            this.updateDirection();
+            this.updateLabel(this.steering);
             this.steeringService.setSteering(value);
         }
     }
 
-    // Update the direction value based on the current steering value.
-    updateDirection() {
-        if (this.steering > 0) {
-            this.direction = 'Right ' + this.steering;
-        } else if (this.steering < 0) {
-            this.direction = 'Left ' + -this.steering;
+    // Update the label value based on the given value.
+    updateLabel(value) {
+        if (value > 0) {
+            this.label = 'Right ' + value;
+        } else if (value < 0) {
+            this.label = 'Left ' + -value;
         } else {
-            this.direction = 'Center'
+            this.label = 'Center'
         }
     }
 

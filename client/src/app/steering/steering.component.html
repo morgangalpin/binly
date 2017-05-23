@@ -1,37 +1,11 @@
-<!--       <md-card>
-        <md-card-title-group>
-          <md-card-title>Steering</md-card-title>
-        </md-card-title-group>
-        <md-card-content>
-          <md-slider min="0" max="5" step="0.1" [(ngModel)]="currentSteering"></md-slider>
-
-          <table>
-            <tr>
-              <td></td>
-              <td><button md-fab color="primary" (click)="accelerate()"><md-icon>arrow_upward</md-icon></button></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><button md-fab color="primary" (click)="steeringLeft()"><md-icon>arrow_back</md-icon></button></td>
-              <td><button md-fab color="primary" (click)="reverse()"><md-icon>arrow_downward</md-icon></button></td>
-              <td><button md-fab color="primary" (click)="steeringRight()"><md-icon>arrow_forward</md-icon></button></td>
-            </tr>
-          </table>
-          <br />
-          <div class="container">
-            <button md-fab color="accent"><md-icon>speaker</md-icon></button>
-          </div>
-        </md-card-content>
-      </md-card> -->
-
 <md-card>
   <md-card-title-group>
     <md-card-title>Steering</md-card-title>
   </md-card-title-group>
   <md-card-content>
-    Direction:<br>{{direction}}
+    {{label}}
   </md-card-content>
   <md-card-actions>
-    <md-slider value= "0" md-discrete min="-5" max="5" step="1" [ngModel]="steering" (ngModelChange)="setSteering($event)"></md-slider>
+    <md-slider value="0" md-discrete min="-5" max="5" step="1" [ngModel]="steering" (ngModelChange)="setSteering($event)"></md-slider>
   </md-card-actions>
 </md-card>
