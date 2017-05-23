@@ -9,9 +9,9 @@ class Steering(Resource):
     SERVO_MAX = 410  # Max pulse length out of 4096.
     SERVO_CHANNEL = 0
     SERVO_PWM_FREQ_HZ = 50
-    RUDDER_KEY = 'steering'
-    MIN_RUDDER = -5
-    MAX_RUDDER = 5
+    DATA_KEY = 'steering'
+    MIN_VALUE = -5
+    MAX_VALUE = 5
 
     def __init__(self, fake=False, *vargs, **kwargs):
         super(Steering, self).__init__(*vargs, **kwargs)
@@ -29,25 +29,25 @@ class Steering(Resource):
         self.start_processing_incoming_messages()
 
     def handle_incoming_message(self, topic, data):
-        logging.debug('Received RUDDER message on topic "%s": %s' %
+        logging.debug('Received Steering message on topic "%s": %s' %
                       (topic, data))
 
         # Ensure the steering value is given in the data.
-        if self.RUDDER_KEY not in data:
+        if self.DATA_KEY not in data:
             logging.info('Steering data does not contain %s key' %
-                         self.RUDDER_KEY)
+                         self.DATA_KEY)
             return
         # Validate the requested steering value.
         steering = self.validate_value(
             'Steering',
-            data[self.RUDDER_KEY], self.MIN_RUDDER, self.MAX_RUDDER)
+            data[self.DATA_KEY], self.MIN_VALUE, self.MAX_VALUE)
 
         # Reverse the steering value because the servo is backwards.
         steering = -steering
 
         # Make the servo move.
         self._pwm.set_pwm(self.SERVO_CHANNEL, 0, self.scale_value(
-            steering, self.MIN_RUDDER, self.MAX_RUDDER, self.SERVO_MIN,
+            steering, self.MIN_VALUE, self.MAX_VALUE, self.SERVO_MIN,
             self.SERVO_MAX))
 
     @staticmethod
