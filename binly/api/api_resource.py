@@ -5,17 +5,14 @@ from flask_socketio import (Namespace, emit)
 from binly.utils.resource import Resource
 
 
-class Throttle(Resource, Namespace):
+class ApiResource(Resource, Namespace):
 
     def __init__(self, *vargs, **kwargs):
         """ Constructor.
         Initialize the parent classes.
         """
-        super(Throttle, self).__init__(*vargs, **kwargs)
+        super(ApiResource, self).__init__(*vargs, **kwargs)
         self._client_count = 0
-
-    def on_update(self, data):
-        self._publisher.update('update', data)
 
     def on_connect(self):
         self._client_count += 1
@@ -37,7 +34,7 @@ class Throttle(Resource, Namespace):
     #     join_room(message['room'])
     #     session['receive_count'] = session.get('receive_count', 0) + 1
     #     emit('my_response',
-    #          {'data': 'In Throttle rooms: ' + ', '.join(rooms()),
+    #          {'data': 'In ApiResource rooms: ' + ', '.join(rooms()),
     #           'count': session['receive_count']})
 
     # def on_leave(self, message):

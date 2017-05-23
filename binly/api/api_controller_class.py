@@ -5,9 +5,8 @@ from flask import (Flask,
                    send_from_directory)
 from flask_socketio import (SocketIO)
 from resources.camera import Camera
-from resources.gps import Gps
-from resources.steering import Steering
-from resources.throttle import Throttle
+from resources.sensor import Sensor
+from resources.control import Control
 
 logging.basicConfig(level=logging.DEBUG)
 eventlet.monkey_patch()
@@ -50,9 +49,9 @@ class ApiController(object):
         self._socketio = SocketIO(self._app, async_mode=self._async_mode)
         self.add_namespace_resource('camera', Camera(
             self.CAMERA1_IMAGE_PATH, '/camera'))
-        self.add_namespace_resource('gps', Gps('/gps'))
-        self.add_namespace_resource('steering', Steering('/steering'))
-        self.add_namespace_resource('throttle', Throttle('/throttle'))
+        self.add_namespace_resource('gps', Sensor('/gps'))
+        self.add_namespace_resource('steering', Control('/steering'))
+        self.add_namespace_resource('throttle', Control('/throttle'))
 
     # @app.route('/')
     def index(self):
