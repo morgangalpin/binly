@@ -4,7 +4,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {} from 'jasmine';
 
-describe('App: Duckomatic', () => {
+describe('App: Binly', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [

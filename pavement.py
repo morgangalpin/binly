@@ -21,7 +21,7 @@ options(setup=setup_dict)
 
 install_distutils_tasks()
 
-## Miscellaneous helper functions
+# Miscellaneous helper functions
 
 
 def print_passed():
@@ -46,6 +46,7 @@ class cwd(object):
     """Class used for temporarily changing directories. Can be though of
     as a `pushd /my/dir' then a `popd' at the end.
     """
+
     def __init__(self, newcwd):
         """:param newcwd: directory to make the cwd
         :type newcwd: :class:`str`
@@ -62,7 +63,7 @@ class cwd(object):
         os.chdir(self.oldcwd)
 
 
-## Task-related functions
+# Task-related functions
 
 def _doc_make(*make_args):
     """Run make in sphinx' docs directory.
@@ -84,7 +85,7 @@ def _doc_make(*make_args):
     return retcode
 
 
-## Tasks
+# Tasks
 
 @task
 @needs('doc_html', 'setuptools.command.sdist')
@@ -129,7 +130,7 @@ def run(args):
     # executable. So we just pass the package name in as the executable name,
     # since it's close enough. This should never be seen by an end user
     # installing through Setuptools anyway.
-    from duckomatic.main import main
+    from binly.main import main
     raise SystemExit(main([CODE_DIRECTORY] + args))
 
 
@@ -171,6 +172,7 @@ def doc_watch():
         raise SystemExit(1)
 
     class RebuildDocsEventHandler(FileSystemEventHandler):
+
         def __init__(self, base_paths):
             self.base_paths = base_paths
 

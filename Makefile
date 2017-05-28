@@ -10,10 +10,10 @@ clean-client:
 	rm -rf client/static client/tmp
 
 run:
-	python -m duckomatic
+	python -m binly
 
 fake:
-	python -m duckomatic -f -d
+	python -m binly -f -d
 
 test:
 	paver test_all

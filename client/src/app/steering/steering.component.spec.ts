@@ -3,13 +3,13 @@
 import { TestBed, async } from '@angular/core/testing';
 import {} from 'jasmine';
 
-import { RudderComponent } from './rudder.component';
-import { RudderService } from './rudder.service';
+import { SteeringComponent } from './steering.component';
+import { SteeringService } from './steering.service';
 import { SocketService } from "../shared";
 
-describe('Component: Rudder', () => {
+describe('Component: Steering', () => {
   it('should create an instance', () => {
-    let component = new RudderComponent(new RudderService(new SocketService()));
+    let component = new SteeringComponent(new SteeringService(new SocketService()));
     expect(component).toBeTruthy();
   });
 });

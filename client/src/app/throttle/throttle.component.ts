@@ -9,7 +9,8 @@ import { ThrottleService } from './throttle.service';
 })
 export class ThrottleComponent implements OnInit {
 
-    throttle: number = 0;
+    throttle: number;
+    label: string;
 
     constructor(
         private throttleService: ThrottleService
@@ -19,11 +20,24 @@ export class ThrottleComponent implements OnInit {
         if (value != this.throttle) {
             console.log("Changing throttle value from: " + this.throttle + " to " + value)
             this.throttle = value;
+            this.updateLabel(this.throttle);
             this.throttleService.setThrottle(value);
         }
     }
 
+    // Update the label value based on the given value.
+    updateLabel(value) {
+        if (value > 0) {
+            this.label = 'Forward ' + value;
+        } else if (value < 0) {
+            this.label = 'Backward ' + -value;
+        } else {
+            this.label = 'Stop'
+        }
+    }
+
     ngOnInit() {
+        this.setThrottle(0);
     }
 
 }

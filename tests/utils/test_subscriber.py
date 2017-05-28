@@ -8,8 +8,8 @@ from pytest import raises
 import pytest
 parametrize = pytest.mark.parametrize
 
-# from duckomatic import metadata
-from duckomatic.utils.subscriber import (Subscriber, NoDataException)
+# from binly import metadata
+from binly.utils.subscriber import (Subscriber, NoDataException)
 
 
 class TestSubscriber(object):

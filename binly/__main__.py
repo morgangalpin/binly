@@ -10,10 +10,10 @@ import logging
 import os
 import sys
 
-import duckomatic.metadata as metadata
+import binly.metadata as metadata
 
-from duckomatic.api.api_controller_class import ApiController
-from duckomatic.platform.platform_controller import PlatformController
+from binly.api.api_controller_class import ApiController
+from binly.platform.platform_controller import PlatformController
 
 DATA_DIR = '/mnt/ramdisk/data'
 CAMERA1_IMAGE_DIR = os.path.join(DATA_DIR, 'camera1', 'image')
@@ -89,7 +89,7 @@ URL: <{url}>
         platform_controller.add_subscriber_to_resource_publisher(
             'gps', api_controller.get_resource_subscriber('gps'), 'feed')
         platform_controller.add_resource_subscriber_to_publisher(
-            'rudder', api_controller.get_resource_publisher('rudder'),
+            'steering', api_controller.get_resource_publisher('steering'),
             'update')
         platform_controller.add_resource_subscriber_to_publisher(
             'throttle', api_controller.get_resource_publisher('throttle'),

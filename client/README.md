@@ -1,6 +1,6 @@
-# duckomatic
+# binly
 
-  Robot duck Client!
+  Robot client!
 
 ## Prerequisites
 

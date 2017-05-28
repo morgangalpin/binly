@@ -1,0 +1,11 @@
+<md-card>
+  <md-card-title-group>
+    <md-card-title>Steering</md-card-title>
+  </md-card-title-group>
+  <md-card-content>
+    {{label}}
+  </md-card-content>
+  <md-card-actions>
+    <md-slider value="0" md-discrete min="-5" max="5" step="1" [ngModel]="steering" (ngModelChange)="setSteering($event)"></md-slider>
+  </md-card-actions>
+</md-card>

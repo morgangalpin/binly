@@ -7,8 +7,8 @@
 import pytest
 parametrize = pytest.mark.parametrize
 
-# from duckomatic import metadata
-from duckomatic.utils.publisher import (Publisher)
+# from binly import metadata
+from binly.utils.publisher import (Publisher)
 
 
 class TestPublisher(object):

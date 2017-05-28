@@ -2,17 +2,17 @@ import atexit
 import logging
 from os.path import (dirname, abspath, join)
 import sys
-from duckomatic.utils.resource import Resource
+from binly.utils.resource import Resource
 
 
 class Throttle(Resource):
     MOTOR_HAT_ADDRESS = 0x61
     MOTOR_NUM = 1
     THROTTLE_KEY = 'throttle'
-    MIN_THROTTLE = 0
-    MAX_THROTTLE = 10
-    MOTOR_MIN = 0
-    MOTOR_MAX = 200
+    MIN_THROTTLE = -5
+    MAX_THROTTLE = 5
+    MOTOR_MIN = -250
+    MOTOR_MAX = 250
 
     def __init__(self, fake=False, *vargs, **kwargs):
         super(Throttle, self).__init__(*vargs, **kwargs)

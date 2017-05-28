@@ -1,8 +1,8 @@
 import logging
 import threading
 import time
-from duckomatic.utils.publisher import Publisher
-from duckomatic.utils.subscriber import Subscriber
+from binly.utils.publisher import Publisher
+from binly.utils.subscriber import Subscriber
 
 
 class Resource(object):
