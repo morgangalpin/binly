@@ -30,23 +30,4 @@ export class SocketService {
         });
         return socket;
     }
-
-    // // Get the connected socket.
-    // connect(name: string, id: string): void {
-    //     this.name = name;
-    //     this.id = id;
-    //     let socketUrl = this.host + "/" + this.name;
-    //     console.log(`SocketService: Connecting to "${socketUrl}" on "${this.id}"`);
-    //     this.socket = io.connect(socketUrl);
-    //     this.socket.on("connect", () => this.on_connect());
-    //     this.socket.on("disconnect", () => this.on_disconnect());
-    //     this.socket.on("error", (error: string) => {
-    //         console.log(`ERROR: "${error}" (${socketUrl})`);
-    //     });
-    // }
-
-    // // Bind an event handler to an event name.
-    // on(eventName: string, callback) {
-    //     this.socket.on(eventName, callback);
-    // }
 }
