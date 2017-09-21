@@ -1,0 +1,13 @@
+<md-card>
+  <md-card-title-group>
+    <md-card-title>Arm</md-card-title>
+  </md-card-title-group>
+  <md-card-content>
+    <app-servo [name]="'Gripper'" [valueMin]="-30" [valueMax]="30" [valueStep]="1"></app-servo>
+    <app-servo [name]="'WristRotate'" [valueMin]="-30" [valueMax]="30" [valueStep]="1"></app-servo>
+    <app-servo [name]="'WristAngle'" [valueMin]="-30" [valueMax]="30" [valueStep]="1"></app-servo>
+    <app-servo [name]="'ElbowAngle'" [valueMin]="-30" [valueMax]="30" [valueStep]="1"></app-servo>
+    <app-servo [name]="'ShoulderAngle'" [valueMin]="-30" [valueMax]="30" [valueStep]="1"></app-servo>
+    <app-servo [name]="'ShoulderRotate'" [valueMin]="-30" [valueMax]="30" [valueStep]="1"></app-servo>
+  </md-card-content>
+</md-card>

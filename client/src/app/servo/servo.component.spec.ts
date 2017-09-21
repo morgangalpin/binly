@@ -9,7 +9,7 @@ import { SocketService, SimpleSocketService } from "../shared";
 
 describe('Component: Servo', () => {
   it('should create an instance', () => {
-    let component = new ServoComponent('test', 0, 10, 1, new SocketService(), new ServoFormatterSet());
+    let component = new ServoComponent(new SocketService(), new ServoFormatterSet());
     expect(component).toBeTruthy();
   });
 });

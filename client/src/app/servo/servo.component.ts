@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Optional } from '@angular/core';
 
 import { ServoFormatterSet } from './ServoFormatterSet';
 import { SocketService, SimpleSocketService, FormatterSet } from '../shared';
@@ -9,30 +9,34 @@ import { SocketService, SimpleSocketService, FormatterSet } from '../shared';
     styleUrls: ['./servo.component.css']
 })
 export class ServoComponent implements OnInit {
-
+    @Input() name: string;
+    @Input() valueMin: number;
+    @Input() valueMax: number;
+    @Input() valueStep: number;
     public value: number;
     public label: string;
     private socketService: SimpleSocketService;
 
     constructor(
-        readonly name: string,
-        readonly valueMin: number,
-        readonly valueMax: number,
-        readonly valueStep: number,
-        socketService: SocketService,
-        private readonly labelUpdater: FormatterSet = null
+        private readonly baseSocketService: SocketService,
+        @Optional() private labelUpdater: FormatterSet
     ) {
-      this.socketService = new SimpleSocketService(socketService, this.name, 'update');
-      if (!this.labelUpdater) {
-          this.labelUpdater = new ServoFormatterSet();
-      }
+        if (!this.labelUpdater) {
+            this.labelUpdater = new ServoFormatterSet();
+        }
+    }
+
+    ngOnInit() {
+        console.log("Initializing servo: " + this.name);
+        this.socketService = new SimpleSocketService(this.baseSocketService, this.name, 'update');
+        this.setValue(Math.round((this.valueMin + this.valueMax) / 2));
     }
 
     setValue(value: number) {
         if (value != this.value) {
-            console.log("Changing servo value from: " + this.value + " to " + value)
+            console.log("Changing " + this.name + " servo value from: " + this.value + " to " + value)
             this.value = value;
-            this.labelUpdater.update({'value': value});
+            this.label = this.labelUpdater.update({'value': value});
             this.socketService.setValue(value);
         }
     }
@@ -47,8 +51,4 @@ export class ServoComponent implements OnInit {
     //         this.label = this.zeroLabel.apply(value);
     //     }
     // }
-
-    ngOnInit() {
-        this.setValue(0);
-    }
 }

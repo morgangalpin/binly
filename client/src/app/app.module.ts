@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 // Shared module
 import { SharedModule } from "./shared/shared.module";
 
+import { ArmModule } from './arm/arm.module';
+import { ServoModule } from './servo/servo.module';
 import { CameraModule } from './camera/camera.module';
 import { GpsModule } from './gps/gps.module';
 import { SteeringModule } from './steering/steering.module';
@@ -27,6 +29,8 @@ import { ThrottleModule } from './throttle/throttle.module';
     SharedModule,
 
     // Custom Modules
+    ArmModule,
+    ServoModule,
     CameraModule,
     GpsModule,
     SteeringModule,
