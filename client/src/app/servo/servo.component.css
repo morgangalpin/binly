@@ -1,0 +1,21 @@
+.servo {
+    width: 160px;
+    margin-right: 10px;
+    text-align: center;
+}
+.servo.mat-card-content {
+    margin-bottom: 0px;
+}
+.servo .mat-slider {
+    padding: 0px;
+}
+.servo-name, .servo-label, .servo-control {
+    width: 130px;
+}
+.servo-name {
+    font-weight: bold;
+}
+.servo-label {
+}
+.servo-control {
+}

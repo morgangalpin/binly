@@ -1,11 +1,5 @@
-<md-card>
-  <md-card-title-group>
-    <md-card-title>{{name}}</md-card-title>
-  </md-card-title-group>
-  <md-card-content>
-    {{label}}
-  </md-card-content>
-  <md-card-actions>
-    <md-slider discrete class="md-accent" value="0" [min]="valueMin" [max]="valueMax" [step]="valueStep" [ngModel]="servo" (ngModelChange)="setValue($event)"></md-slider>
-  </md-card-actions>
-</md-card>
+<md-card-content class="servo">
+    <div class="servo-name">{{name}}</div>
+    <div class="servo-label">{{label}}</div>
+    <div class="servo-control"><md-slider discrete class="md-accent" value="0" [min]="valueMin" [max]="valueMax" [step]="valueStep" [ngModel]="servo" (ngModelChange)="setValue($event)"></md-slider></div>
+</md-card-content>
