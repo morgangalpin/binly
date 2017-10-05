@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Optional } from '@angular/core';
 
-import { ServoFormatterSet } from './ServoFormatterSet';
-import { SocketService, SimpleSocketService, FormatterSet } from '../shared';
+import { FormatterSet, LeftRightFormatterSet, OpenCloseFormatterSet, UpDownFormatterSet } from '../formatter';
+import { SocketService, SimpleSocketService } from '../shared';
 
 @Component({
     selector: 'app-servo',
@@ -13,6 +13,8 @@ export class ServoComponent implements OnInit {
     @Input() valueMin: number;
     @Input() valueMax: number;
     @Input() valueStep: number;
+    @Input() valueInitial: number;
+    @Input() labelStyle: string;
     public value: number;
     public label: string;
     private socketService: SimpleSocketService;
@@ -21,15 +23,29 @@ export class ServoComponent implements OnInit {
         private readonly baseSocketService: SocketService,
         @Optional() private labelUpdater: FormatterSet
     ) {
-        if (!this.labelUpdater) {
-            this.labelUpdater = new ServoFormatterSet();
-        }
     }
 
     ngOnInit() {
         console.log("Initializing servo: " + this.name);
+        this.initLabelUpdater();
         this.socketService = new SimpleSocketService(this.baseSocketService, this.name, 'update');
-        this.setValue(Math.round((this.valueMin + this.valueMax) / 2));
+        this.setValue(this.valueInitial);
+    }
+
+    private initLabelUpdater() {
+        if (!this.labelUpdater) {
+            switch (this.labelStyle) {
+                case "open-close":
+                    this.labelUpdater = new OpenCloseFormatterSet(this.valueMin, this.valueMax);
+                    break;
+                case "up-down":
+                    this.labelUpdater = new UpDownFormatterSet();
+                    break;
+                case "rotate":
+                default:
+                    this.labelUpdater = new LeftRightFormatterSet();
+            }
+        }
     }
 
     setValue(value: number) {

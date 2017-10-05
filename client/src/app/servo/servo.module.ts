@@ -5,7 +5,6 @@ import { MaterialModule } from '@angular/material';
 import { SimpleSocketService } from '../shared';
 
 import { ServoComponent } from './servo.component';
-import { ServoFormatterSet } from './ServoFormatterSet';
 
 @NgModule({
   imports: [
@@ -15,6 +14,6 @@ import { ServoFormatterSet } from './ServoFormatterSet';
   ],
   declarations: [ServoComponent],
   exports: [ServoComponent],
-  providers: [ServoFormatterSet]
+  providers: []
 })
 export class ServoModule { }
