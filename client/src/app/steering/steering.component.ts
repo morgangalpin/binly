@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ServoComponent } from '../servo/servo.component';
 
@@ -6,4 +6,14 @@ import { ServoComponent } from '../servo/servo.component';
     selector: 'app-steering',
     templateUrl: './steering.component.html'
 })
-export class SteeringComponent extends ServoComponent { }
+export class SteeringComponent extends ServoComponent {
+    ngOnInit() {
+        if (!this.name) {
+            this.name = 'Steering';
+        }
+        if (!this.labelStyle) {
+            this.labelStyle = 'left-right';
+        }
+        super.ngOnInit();
+    }
+}

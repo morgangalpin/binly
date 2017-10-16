@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Optional } from '@angular/core';
 
-import { FormatterSet, LeftRightFormatterSet, OpenCloseFormatterSet, UpDownFormatterSet } from '../formatter';
+import { FormatterSet, LeftRightFormatterSet, OpenCloseFormatterSet, ForwardBackwardFormatterSet, UpDownFormatterSet } from '../formatter';
 import { SocketService, SimpleSocketService } from '../shared';
 
 @Component({
@@ -41,6 +41,9 @@ export class ServoComponent implements OnInit {
                 case "up-down":
                     this.labelUpdater = new UpDownFormatterSet();
                     break;
+                case "forward-backward":
+                    this.labelUpdater = new ForwardBackwardFormatterSet();
+                    break;
                 case "left-right":
                 default:
                     this.labelUpdater = new LeftRightFormatterSet();
@@ -56,15 +59,4 @@ export class ServoComponent implements OnInit {
             this.socketService.setValue(value);
         }
     }
-
-    // Update the label value based on the given value.
-    // updateLabel(value) {
-    //     if (value > 0) {
-    //         this.label = this.positiveLabel ? this.positiveLabel.apply(value) : '';
-    //     } else if (value < 0) {
-    //         this.label = this.negativeLabel ? this.negativeLabel.apply(-value) : '';
-    //     } else {
-    //         this.label = this.zeroLabel.apply(value);
-    //     }
-    // }
 }
