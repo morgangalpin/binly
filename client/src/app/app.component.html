@@ -9,7 +9,7 @@
 
     <div class="container">
       <app-throttle></app-throttle>
-      <app-steering></app-steering>
+      <app-steering [name]="'Steering'" [valueMin]="-5" [valueMax]="5" [valueStep]="1" [valueInitial]="0" [labelStyle]="'left-right'"></app-steering>
       <app-arm></app-arm>
       <!--app-camera></app-camera-->
       <app-gps></app-gps>

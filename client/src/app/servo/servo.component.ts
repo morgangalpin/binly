@@ -41,7 +41,7 @@ export class ServoComponent implements OnInit {
                 case "up-down":
                     this.labelUpdater = new UpDownFormatterSet();
                     break;
-                case "rotate":
+                case "left-right":
                 default:
                     this.labelUpdater = new LeftRightFormatterSet();
             }
