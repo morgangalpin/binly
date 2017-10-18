@@ -52,7 +52,8 @@ class Steering(Resource):
 
     @staticmethod
     def validate_steering(steering, min_steering, max_steering):
-        """ Validate the steering value is between min_steering and max_steering. """
+        """ Validate the steering value is between min_steering and
+        max_steering. """
         if steering < min_steering:
             logging.warning('Steering value %d less than minimum value of %d. \
 Setting to minimum.' % (steering, min_steering))

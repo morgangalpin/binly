@@ -15,9 +15,9 @@ class Publisher(object):
         """
         subscriber_id = subscriber.get_id()
         for topic in topics:
-            if not topic in self._subscriptions:
+            if topic not in self._subscriptions:
                 self._subscriptions[topic] = {}
-            if not subscriber_id in self._subscriptions[topic]:
+            if subscriber_id not in self._subscriptions[topic]:
                 self._subscriptions[topic][subscriber_id] = subscriber
 
     def unsubscribe(self, subscriber, *topics):

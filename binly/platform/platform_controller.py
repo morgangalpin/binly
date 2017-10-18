@@ -5,6 +5,7 @@ from binly.platform.resources.camera import Camera
 from binly.platform.resources.gps import Gps
 from binly.platform.resources.steering import Steering
 from binly.platform.resources.throttle import Throttle
+from binly.platform.resources.servo import Servo
 
 
 class PlatformController(object):
@@ -40,6 +41,9 @@ class PlatformController(object):
         self.add_resource('gps', Gps())
         self.add_resource('steering', Steering(fake=self.fake))
         self.add_resource('throttle', Throttle(fake=self.fake))
+        self.add_resource('gripper', Servo(
+            name='Gripper', servo_channel=0, min_value=0, max_value=50,
+            fake=self.fake))
 
     def start(self):
         for _, resource in self._resources.items():

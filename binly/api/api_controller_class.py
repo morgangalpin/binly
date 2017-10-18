@@ -50,8 +50,15 @@ class ApiController(object):
         self.add_namespace_resource('camera', Camera(
             self.CAMERA1_IMAGE_PATH, '/camera'))
         self.add_namespace_resource('gps', Sensor('/gps'))
-        self.add_namespace_resource('steering', Control('/steering'))
-        self.add_namespace_resource('throttle', Control('/throttle'))
+        self.add_namespace_resource('steering', Control('/Steering'))
+        self.add_namespace_resource('throttle', Control('/Throttle'))
+        self.add_namespace_resource('gripper', Control('/Gripper'))
+        self.add_namespace_resource('wrist-rotate', Control('/WristRotate'))
+        self.add_namespace_resource('wrist-bend', Control('/WristBend'))
+        self.add_namespace_resource('elbow-bend', Control('/ElbowBend'))
+        self.add_namespace_resource('shoulder-bend', Control('/ShoulderBend'))
+        self.add_namespace_resource(
+            'shoulder-rotate', Control('/ShoulderRotate'))
 
     # @app.route('/')
     def index(self):

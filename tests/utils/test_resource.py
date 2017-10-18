@@ -5,9 +5,9 @@
 #     from pytest.mark import parametrize
 #
 import pytest
-parametrize = pytest.mark.parametrize
-
 from binly.utils.resource import (Resource)
+
+parametrize = pytest.mark.parametrize
 
 
 class TestResource(object):

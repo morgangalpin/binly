@@ -9,13 +9,13 @@ import subprocess
 
 # Import parameters from the setup file.
 sys.path.append('.')
-from setup import (
+from setup import (  # noqa
     setup_dict, get_project_files, print_success_message,
     print_failure_message, _lint, _test, _test_all,
     CODE_DIRECTORY, DOCS_DIRECTORY, TESTS_DIRECTORY, PYTEST_FLAGS)
 
-from paver.easy import options, task, needs, consume_args
-from paver.setuputils import install_distutils_tasks
+from paver.easy import options, task, needs, consume_args  # noqa
+from paver.setuputils import install_distutils_tasks  # noqa
 
 options(setup=setup_dict)
 
@@ -237,8 +237,8 @@ def doc_open():
 def get_tasks():
     """Get all paver-defined tasks."""
     from paver.tasks import environment
-    for task in environment.get_tasks():
-        print(task.shortname)
+    for the_task in environment.get_tasks():
+        print(the_task.shortname)
 
 
 @task

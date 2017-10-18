@@ -1,3 +1,4 @@
+import logging
 from binly.api.api_resource import ApiResource
 
 

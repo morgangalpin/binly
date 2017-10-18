@@ -94,6 +94,9 @@ URL: <{url}>
         platform_controller.add_resource_subscriber_to_publisher(
             'throttle', api_controller.get_resource_publisher('throttle'),
             'update')
+        platform_controller.add_resource_subscriber_to_publisher(
+            'gripper', api_controller.get_resource_publisher('gripper'),
+            'update')
 
         platform_controller.socketio = api_controller._socketio
         platform_controller.start()
@@ -126,6 +129,7 @@ def mkdir_p(path):
             pass
         else:
             raise
+
 
 if __name__ == '__main__':
     entry_point()

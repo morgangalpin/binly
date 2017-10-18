@@ -5,10 +5,10 @@
 #     from pytest.mark import parametrize
 #
 import pytest
-parametrize = pytest.mark.parametrize
-
 # from binly import metadata
 from binly.utils.publisher import (Publisher)
+
+parametrize = pytest.mark.parametrize
 
 
 class TestPublisher(object):

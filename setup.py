@@ -18,9 +18,9 @@ if 'check_output' not in dir(subprocess):
         return out
     subprocess.check_output = check_output
 
-from setuptools import setup, find_packages
-from setuptools.command.test import test as TestCommand
-from distutils import spawn
+from setuptools import setup, find_packages  # noqa
+from setuptools.command.test import test as TestCommand  # noqa
+from distutils import spawn  # noqa
 
 try:
     import colorama
@@ -181,7 +181,7 @@ def _test():
     :return: exit code
     """
     # Make sure to import pytest in this function. For the reason, see here:
-    # <http://pytest.org/latest/goodpractises.html#integration-with-setuptools-test-commands>  # NOPEP8
+    # <http://pytest.org/latest/goodpractises.html#integration-with-setuptools-test-commands>   # noqa
     import pytest
     # This runs the unit tests.
     # It also runs doctest, but only on the modules in TESTS_DIRECTORY.
@@ -201,7 +201,7 @@ def _test_all():
 # Setuptools' automatic run of 2to3 on the source code. The recommended way to
 # run tests is still `paver test_all'.
 # See <http://pythonhosted.org/setuptools/python3.html>
-# Code based on <http://pytest.org/latest/goodpractises.html#integration-with-setuptools-test-commands>  # NOPEP8
+# Code based on <http://pytest.org/latest/goodpractises.html#integration-with-setuptools-test-commands>   # noqa
 class TestAllCommand(TestCommand):
 
     def finalize_options(self):
