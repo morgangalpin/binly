@@ -4,6 +4,8 @@ from os.path import (dirname, abspath, join)
 import sys
 from binly.utils.resource import Resource
 
+# TODO Turn Throttle into a motor set controller.
+
 
 class Throttle(Resource):
     MOTOR_HAT_ADDRESS = 0x61
