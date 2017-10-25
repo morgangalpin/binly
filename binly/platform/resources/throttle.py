@@ -9,8 +9,10 @@ from binly.utils.resource import Resource
 
 class Throttle(Resource):
     MOTOR_HAT_ADDRESS = 0x61
-    MOTOR_NUM = 1
-    THROTTLE_KEY = 'throttle'
+    MOTOR_LEFT_FRONT = 1
+    MOTOR_LEFT_REAR = 2
+    MOTOR_RIGHT_FRONT = 3
+    MOTOR_RIGHT_REAR = 4
     MIN_THROTTLE = -5
     MAX_THROTTLE = 5
     MOTOR_MIN = -250
@@ -18,6 +20,8 @@ class Throttle(Resource):
 
     def __init__(self, fake=False, *vargs, **kwargs):
         super(Throttle, self).__init__(*vargs, **kwargs)
+        self.throttle = 0
+        self.steering = 0
         if fake:
             self._motor_hat = FakeMotorHat()
             self._motor_commands = DcMotorCommands()
@@ -30,38 +34,81 @@ class Throttle(Resource):
                 addr=self.MOTOR_HAT_ADDRESS)
             self._motor_commands = DcMotorCommands(
                 adafruit_motor_hat=self._motor_hat)
-        self._motor = self._motor_hat.getMotor(self.MOTOR_NUM)
+        self._left_front_motor = self._motor_hat.getMotor(
+            self.MOTOR_LEFT_FRONT)
+        self._left_rear_motor = self._motor_hat.getMotor(
+            self.MOTOR_LEFT_REAR)
+        self._right_front_motor = self._motor_hat.getMotor(
+            self.MOTOR_RIGHT_FRONT)
+        self._right_rear_motor = self._motor_hat.getMotor(
+            self.MOTOR_RIGHT_REAR)
 
         def turn_off_motors():
-            self._motor_hat.getMotor(1).run(self._motor_commands.RELEASE)
-            self._motor_hat.getMotor(2).run(self._motor_commands.RELEASE)
-            self._motor_hat.getMotor(3).run(self._motor_commands.RELEASE)
-            self._motor_hat.getMotor(4).run(self._motor_commands.RELEASE)
+            self.set_motor_run(self._motor_commands.RELEASE)
 
         atexit.register(turn_off_motors)
 
     def start(self):
-        self._motor.run(self._motor_commands.FORWARD)
         self.start_processing_incoming_messages()
 
-    def handle_incoming_message(self, topic, data):
-        logging.debug('Received THROTTLE message on topic "%s": %s' %
-                      (topic, data))
+    def handle_incoming_message(self, topic, value):
+        logging.debug('Received throttle message on topic "%s": %s' %
+                      (topic, value))
 
-        # Ensure the throttle value is given in the data.
-        if self.THROTTLE_KEY not in data:
-            logging.warning('Throttle data does not contain %s key' %
-                            self.THROTTLE_KEY)
+        if topic == 'throttle':
+            # Validate and update with the requested throttle value.
+            self.throttle = self.validate_value(
+                'Throttle',
+                value, self.MIN_THROTTLE, self.MAX_THROTTLE)
+
+        elif topic == 'scaled-steering':
+            self.steering = value
+
+        # Update the motors based on the current settings.
+        self.update_motor_state()
+
+    def update_motor_state(self):
+        # Determine motor direction based on throttle sign.
+        # Determine max motor speed based on throttle magnitude.
+        if self.throttle > 0:
+            self.set_motor_run(self._motor_commands.FORWARD)
+            speed = self.throttle
+        elif self.throttle < 0:
+            self.set_motor_run(self._motor_commands.BACKWARD)
+            speed = -self.throttle
+        else:
+            self.set_motor_run(self._motor_commands.BRAKE)
+            # No need to set the speed when braking.
             return
-        # Validate the requested throttle value.
-        throttle = self.validate_value(
-            'Throttle',
-            data[self.THROTTLE_KEY], self.MIN_THROTTLE, self.MAX_THROTTLE)
 
-        # Change the motor speed.
-        self._motor.setSpeed(self.scale_value(
-            throttle, self.MIN_THROTTLE, self.MAX_THROTTLE,
-            self.MOTOR_MIN, self.MOTOR_MAX))
+        # Determine which side to scale down based on steering sign.
+        if self.steering < 0:
+            self.set_left_motor_speed(speed * -self.steering)
+            self.set_right_motor_speed(speed)
+        else:
+            self.set_left_motor_speed(speed)
+            self.set_right_motor_speed(speed * self.steering)
+
+    def set_motor_run(self, motor_command):
+        self._left_front_motor.run(motor_command)
+        self._left_rear_motor.run(motor_command)
+        self._right_front_motor.run(motor_command)
+        self._right_rear_motor.run(motor_command)
+
+    def set_left_motor_speed(self, speed):
+        scaled_speed = self.scale_speed(speed)
+        self._left_front_motor.setSpeed(scaled_speed)
+        self._left_rear_motor.setSpeed(scaled_speed)
+
+    def set_right_motor_speed(self, speed):
+        scaled_speed = self.scale_speed(speed)
+        self._right_front_motor.setSpeed(scaled_speed)
+        self._right_rear_motor.setSpeed(scaled_speed)
+
+    def scale_speed(self, speed):
+        return self.scale_float_value(
+            speed, self.MIN_THROTTLE, self.MAX_THROTTLE,
+            self.MOTOR_MIN, self.MOTOR_MAX)
 
 
 class FakeMotorHat(object):

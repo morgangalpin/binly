@@ -70,10 +70,10 @@ class Camera(Resource):
                         os.remove(file_path)
                 except Exception as e:
                     logging.error(e)
-        else:
-            logging.debug(
-                'Not removing images from "%s" because it is not \
-a valid directory.' % self._image_dir)
+#         else:
+#             logging.debug(
+#                 'Not removing images from "%s" because it is not \
+# a valid directory.' % self._image_dir)
 
 
 class FakePiCamera(object):

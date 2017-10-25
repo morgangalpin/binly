@@ -90,10 +90,10 @@ URL: <{url}>
             'gps', api_controller.get_resource_subscriber('gps'), 'feed')
         platform_controller.add_resource_subscriber_to_publisher(
             'steering', api_controller.get_resource_publisher('steering'),
-            'update')
+            'steering')
         platform_controller.add_resource_subscriber_to_publisher(
             'throttle', api_controller.get_resource_publisher('throttle'),
-            'update')
+            'throttle')
         platform_controller.add_resource_subscriber_to_publisher(
             'gripper', api_controller.get_resource_publisher('gripper'),
             'update')

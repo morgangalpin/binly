@@ -1,4 +1,4 @@
-# import logging
+import logging
 import threading
 
 from binly.platform.resources.camera import Camera
@@ -39,8 +39,11 @@ class PlatformController(object):
             image_format=camera_image_format,
             max_image_age_seconds=camera1_image_max_age_seconds))
         self.add_resource('gps', Gps())
-        self.add_resource('steering', Steering(fake=self.fake))
+        steering = Steering()
+        self.add_resource('steering', steering)
         self.add_resource('throttle', Throttle(fake=self.fake))
+        self.add_resource_subscriber_to_publisher(
+            'throttle', steering.get_publisher(), 'scaled-steering')
         self.add_resource('gripper', Servo(
             name='Gripper', servo_channel=0, min_value=0, max_value=50,
             fake=self.fake))
@@ -84,9 +87,14 @@ class PlatformController(object):
         if resource_id in self._resources:
             publisher = self._resources[resource_id].get_publisher()
             publisher.subscribe(subscriber, *topics)
+            logging.debug('Subscriber now subscribed to "%s" resource_id' +
+                          ' publisher for topics: [%s]', resource_id,
+                          ', '.join(topics))
 
     def add_resource_subscriber_to_publisher(self, resource_id, publisher,
                                              *topics):
         if resource_id in self._resources:
             subscriber = self._resources[resource_id].get_subscriber()
             publisher.subscribe(subscriber, *topics)
+            logging.debug('Publisher now has "%s" subscriber for topics: [%s]',
+                          resource_id, ', '.join(topics))
