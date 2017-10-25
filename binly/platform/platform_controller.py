@@ -1,4 +1,4 @@
-import logging
+# import logging
 import threading
 
 from binly.platform.resources.camera import Camera
@@ -87,14 +87,14 @@ class PlatformController(object):
         if resource_id in self._resources:
             publisher = self._resources[resource_id].get_publisher()
             publisher.subscribe(subscriber, *topics)
-            logging.debug('Subscriber now subscribed to "%s" resource_id' +
-                          ' publisher for topics: [%s]', resource_id,
-                          ', '.join(topics))
+            # logging.debug('Subscriber now subscribed to "%s" resource_id' +
+            #               ' publisher for topics: [%s]', resource_id,
+            #               ', '.join(topics))
 
     def add_resource_subscriber_to_publisher(self, resource_id, publisher,
                                              *topics):
         if resource_id in self._resources:
             subscriber = self._resources[resource_id].get_subscriber()
             publisher.subscribe(subscriber, *topics)
-            logging.debug('Publisher now has "%s" subscriber for topics: [%s]',
-                          resource_id, ', '.join(topics))
+            # logging.debug('Publisher now has "%s" subscriber for topics: [%s]',
+            #               resource_id, ', '.join(topics))
