@@ -13,6 +13,7 @@ class Throttle(Resource):
     MOTOR_LEFT_REAR = 2
     MOTOR_RIGHT_FRONT = 3
     MOTOR_RIGHT_REAR = 4
+    MIN_THROTTLE_FOR_SCALE = 0
     MIN_THROTTLE = -5
     MAX_THROTTLE = 5
     MOTOR_MIN = 0
@@ -72,13 +73,14 @@ class Throttle(Resource):
         # Determine max motor speed based on throttle magnitude.
         if self.throttle > 0:
             self.set_motor_run(self._motor_commands.FORWARD)
-            speed = self.throttle
+            speed = self.scale_speed(self.throttle)
         elif self.throttle < 0:
             self.set_motor_run(self._motor_commands.BACKWARD)
-            speed = -self.throttle
+            speed = self.scale_speed(-self.throttle)
         else:
             self.set_motor_run(self._motor_commands.BRAKE)
             self.set_motor_speed(0)
+            return
 
         # Determine which side to scale down based on steering sign.
         if self.steering < 0:
@@ -95,24 +97,20 @@ class Throttle(Resource):
         self._right_rear_motor.run(motor_command)
 
     def set_motor_speed(self, speed):
+        self.set_left_motor_speed(speed)
+        self.set_right_motor_speed(speed)
+
+    def set_left_motor_speed(self, speed):
         self._left_front_motor.setSpeed(speed)
         self._left_rear_motor.setSpeed(speed)
+
+    def set_right_motor_speed(self, speed):
         self._right_front_motor.setSpeed(speed)
         self._right_rear_motor.setSpeed(speed)
 
-    def set_left_motor_speed(self, speed):
-        scaled_speed = self.scale_speed(speed)
-        self._left_front_motor.setSpeed(scaled_speed)
-        self._left_rear_motor.setSpeed(scaled_speed)
-
-    def set_right_motor_speed(self, speed):
-        scaled_speed = self.scale_speed(speed)
-        self._right_front_motor.setSpeed(scaled_speed)
-        self._right_rear_motor.setSpeed(scaled_speed)
-
     def scale_speed(self, speed):
         return self.scale_value(
-            speed, self.MIN_THROTTLE, self.MAX_THROTTLE,
+            speed, self.MIN_THROTTLE_FOR_SCALE, self.MAX_THROTTLE,
             self.MOTOR_MIN, self.MOTOR_MAX)
 
 
