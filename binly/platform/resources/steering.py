@@ -29,7 +29,7 @@ class Steering(Resource):
         # Update the stored value and notify listeners of the scaled value.
         if new_value != self.value:
             self.value = new_value
-            scaled_value = 1.0 - self.scale_float_value(
+            scaled_value = self.scale_float_value(
                 self.value, self.MIN_VALUE, self.MAX_VALUE,
                 self.MIN_SCALE_VALUE, self.MAX_SCALE_VALUE)
             self.get_publisher().update('scaled-steering', scaled_value)

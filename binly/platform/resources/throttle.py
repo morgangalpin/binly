@@ -84,11 +84,11 @@ class Throttle(Resource):
 
         # Determine which side to scale down based on steering sign.
         if self.steering < 0:
-            self.set_left_motor_speed(int(speed * -self.steering))
+            self.set_left_motor_speed(round(speed * (1.0 + self.steering)))
             self.set_right_motor_speed(speed)
         else:
             self.set_left_motor_speed(speed)
-            self.set_right_motor_speed(int(speed * self.steering))
+            self.set_right_motor_speed(round(speed * (1.0 - self.steering)))
 
     def set_motor_run(self, motor_command):
         self._left_front_motor.run(motor_command)
