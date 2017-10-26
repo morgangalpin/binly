@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import { MatSidenavModule, MatToolbarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 
@@ -24,7 +24,8 @@ import { ThrottleModule } from './throttle/throttle.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule,
+    MatSidenavModule,
+    MatToolbarModule,
 
     SharedModule,
 

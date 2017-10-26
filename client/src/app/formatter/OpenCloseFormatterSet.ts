@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { FormatterSet, Formatter } from './index';
+import { Formatter } from './Formatter';
+import { FormatterSet } from './FormatterSet';
 
 @Injectable()
 export class OpenCloseFormatterSet extends FormatterSet {

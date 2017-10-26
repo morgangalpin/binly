@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '@angular/material';
+import { MatCardModule } from '@angular/material';
 
 import { ArmComponent } from './arm.component';
 
@@ -11,7 +11,7 @@ import { ServoModule } from '../servo/servo.module';
   imports: [
     CommonModule,
     FormsModule,
-    MaterialModule,
+    MatCardModule,
 
     // Custom modules.
     ServoModule

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '@angular/material';
+import { MatCardModule, MatSliderModule } from '@angular/material';
 
 import { SteeringComponent } from './steering.component';
 
@@ -9,7 +9,8 @@ import { SteeringComponent } from './steering.component';
   imports: [
     CommonModule,
     FormsModule,
-    MaterialModule
+    MatCardModule,
+    MatSliderModule
   ],
   declarations: [SteeringComponent],
   exports: [SteeringComponent],
