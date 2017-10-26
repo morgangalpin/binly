@@ -78,8 +78,7 @@ class Throttle(Resource):
             speed = -self.throttle
         else:
             self.set_motor_run(self._motor_commands.BRAKE)
-            # No need to set the speed when braking.
-            return
+            self.set_motor_speed(0)
 
         # Determine which side to scale down based on steering sign.
         if self.steering < 0:
@@ -94,6 +93,12 @@ class Throttle(Resource):
         self._left_rear_motor.run(motor_command)
         self._right_front_motor.run(motor_command)
         self._right_rear_motor.run(motor_command)
+
+    def set_motor_speed(self, speed):
+        self._left_front_motor.setSpeed(speed)
+        self._left_rear_motor.setSpeed(speed)
+        self._right_front_motor.setSpeed(speed)
+        self._right_rear_motor.setSpeed(speed)
 
     def set_left_motor_speed(self, speed):
         scaled_speed = self.scale_speed(speed)
