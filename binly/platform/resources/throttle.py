@@ -15,7 +15,7 @@ class Throttle(Resource):
     MOTOR_RIGHT_REAR = 4
     MIN_THROTTLE = -5
     MAX_THROTTLE = 5
-    MOTOR_MIN = -250
+    MOTOR_MIN = 0
     MOTOR_MAX = 250
 
     def __init__(self, fake=False, *vargs, **kwargs):
@@ -83,11 +83,11 @@ class Throttle(Resource):
 
         # Determine which side to scale down based on steering sign.
         if self.steering < 0:
-            self.set_left_motor_speed(speed * -self.steering)
+            self.set_left_motor_speed(int(speed * -self.steering))
             self.set_right_motor_speed(speed)
         else:
             self.set_left_motor_speed(speed)
-            self.set_right_motor_speed(speed * self.steering)
+            self.set_right_motor_speed(int(speed * self.steering))
 
     def set_motor_run(self, motor_command):
         self._left_front_motor.run(motor_command)
@@ -106,7 +106,7 @@ class Throttle(Resource):
         self._right_rear_motor.setSpeed(scaled_speed)
 
     def scale_speed(self, speed):
-        return self.scale_float_value(
+        return self.scale_value(
             speed, self.MIN_THROTTLE, self.MAX_THROTTLE,
             self.MOTOR_MIN, self.MOTOR_MAX)
 
