@@ -24,7 +24,7 @@ class Servo(Resource):
                 abspath(__file__))))),
                 'submodules', 'Adafruit_Python_PCA9685')
             if path not in sys.path:
-                sys.path.append()
+                sys.path.append(path)
             import Adafruit_PCA9685
             self._pwm = Adafruit_PCA9685.PCA9685()
             self._pwm.set_pwm_freq(self.SERVO_PWM_FREQ_HZ)
