@@ -19,6 +19,8 @@ class Servo(Resource):
         self.servo_channel = servo_channel
         self.min_value = min_value
         self.max_value = max_value
+        self.servo_min = servo_min
+        self.servo_max = servo_max
         if fake:
             self._pwm = FakePCA9685(self.name)
         else:
@@ -45,8 +47,8 @@ class Servo(Resource):
 
         # Make the servo move.
         scaled_value = self.scale_value(
-            new_value, self.min_value, self.max_value, self.DEFAULT_SERVO_MIN,
-            self.DEFAULT_SERVO_MAX)
+            new_value, self.min_value, self.max_value,
+            self.servo_min, self.servo_max)
         logging.debug('Setting servo value to: %s' % (scaled_value))
         self._pwm.set_pwm(self.servo_channel, 0, scaled_value)
 
