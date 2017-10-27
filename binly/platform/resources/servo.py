@@ -5,8 +5,8 @@ from binly.utils.resource import Resource
 
 
 class Servo(Resource):
-    DEFAULT_SERVO_MIN = 50  # Min pulse length out of 4096.
-    DEFAULT_SERVO_MAX = 1050  # Max pulse length out of 4096.
+    DEFAULT_SERVO_MIN = 90  # Min pulse length out of 4096.
+    DEFAULT_SERVO_MAX = 545  # Max pulse length out of 4096.
     SERVO_PWM_FREQ_HZ = 50
 
 # TODO adjust arm servo ranges.
@@ -44,9 +44,11 @@ class Servo(Resource):
             value, self.min_value, self.max_value)
 
         # Make the servo move.
-        self._pwm.set_pwm(self.servo_channel, 0, self.scale_value(
+        scaled_value = self.scale_value(
             new_value, self.min_value, self.max_value, self.DEFAULT_SERVO_MIN,
-            self.DEFAULT_SERVO_MAX))
+            self.DEFAULT_SERVO_MAX)
+        logging.debug('Setting servo value to: %s' % (scaled_value))
+        self._pwm.set_pwm(self.servo_channel, 0, scaled_value)
 
 
 class FakePCA9685(object):

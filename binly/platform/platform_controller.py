@@ -46,22 +46,22 @@ class PlatformController(object):
             'throttle', steering.get_publisher(), 'scaled-steering')
         self.add_resource('gripper', Servo(
             name='Gripper', servo_channel=0, min_value=0, max_value=200,
-            fake=self.fake))
+            servo_min=155, servo_max=435, fake=self.fake))
         self.add_resource('wrist-rotate', Servo(
             name='WristRotate', servo_channel=1, min_value=-100, max_value=100,
-            fake=self.fake))
+            servo_min=110, servo_max=545, fake=self.fake))
         self.add_resource('wrist-bend', Servo(
             name='WristBend', servo_channel=2, min_value=-100, max_value=100,
-            fake=self.fake))
+            servo_min=120, servo_max=390, fake=self.fake))
         self.add_resource('elbow-bend', Servo(
             name='ElbowBend', servo_channel=3, min_value=-100, max_value=100,
-            fake=self.fake))
+            servo_min=90, servo_max=545, fake=self.fake))
         self.add_resource('shoulder-bend', Servo(
             name='ShoulderBend', servo_channel=4, min_value=-100, max_value=100,
-            fake=self.fake))
+            servo_min=100, servo_max=515, fake=self.fake))
         self.add_resource('shoulder-rotate', Servo(
             name='ShoulderRotate', servo_channel=5, min_value=-100,
-            max_value=100, fake=self.fake))
+            max_value=100, servo_min=90, servo_max=545, fake=self.fake))
 
     def start(self):
         for _, resource in self._resources.items():
