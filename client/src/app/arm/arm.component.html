@@ -3,11 +3,11 @@
     <mat-card-title>Arm</mat-card-title>
   </mat-card-title-group>
   <mat-card-actions>
-    <app-servo [name]="'Gripper'" [valueMin]="0" [valueMax]="50" [valueStep]="1" [valueInitial]="0" [labelStyle]="'open-close'"></app-servo>
-    <app-servo [name]="'WristRotate'" [valueMin]="-30" [valueMax]="30" [valueStep]="1" [valueInitial]="0" [labelStyle]="'left-right'"></app-servo>
-    <app-servo [name]="'WristBend'" [valueMin]="-30" [valueMax]="30" [valueStep]="1" [valueInitial]="0" [labelStyle]="'up-down'"></app-servo>
-    <app-servo [name]="'ElbowBend'" [valueMin]="-30" [valueMax]="30" [valueStep]="1" [valueInitial]="0" [labelStyle]="'up-down'"></app-servo>
-    <app-servo [name]="'ShoulderBend'" [valueMin]="-30" [valueMax]="30" [valueStep]="1" [valueInitial]="0" [labelStyle]="'up-down'"></app-servo>
-    <app-servo [name]="'ShoulderRotate'" [valueMin]="-30" [valueMax]="30" [valueStep]="1" [valueInitial]="0" [labelStyle]="'left-right'"></app-servo>
+    <app-servo [name]="'Gripper'" [valueMin]="0" [valueMax]="200" [valueStep]="1" [valueInitial]="0" [labelStyle]="'open-close'"></app-servo>
+    <app-servo [name]="'WristRotate'" [valueMin]="-100" [valueMax]="100" [valueStep]="1" [valueInitial]="0" [labelStyle]="'left-right'"></app-servo>
+    <app-servo [name]="'WristBend'" [valueMin]="-100" [valueMax]="100" [valueStep]="1" [valueInitial]="0" [labelStyle]="'up-down'"></app-servo>
+    <app-servo [name]="'ElbowBend'" [valueMin]="-100" [valueMax]="100" [valueStep]="1" [valueInitial]="0" [labelStyle]="'up-down'"></app-servo>
+    <app-servo [name]="'ShoulderBend'" [valueMin]="-100" [valueMax]="100" [valueStep]="1" [valueInitial]="0" [labelStyle]="'up-down'"></app-servo>
+    <app-servo [name]="'ShoulderRotate'" [valueMin]="-100" [valueMax]="100" [valueStep]="1" [valueInitial]="0" [labelStyle]="'left-right'"></app-servo>
   </mat-card-actions>
 </mat-card>

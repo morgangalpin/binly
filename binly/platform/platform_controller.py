@@ -45,23 +45,23 @@ class PlatformController(object):
         self.add_resource_subscriber_to_publisher(
             'throttle', steering.get_publisher(), 'scaled-steering')
         self.add_resource('gripper', Servo(
-            name='Gripper', servo_channel=0, min_value=0, max_value=50,
+            name='Gripper', servo_channel=0, min_value=0, max_value=200,
             fake=self.fake))
         self.add_resource('wrist-rotate', Servo(
-            name='WristRotate', servo_channel=1, min_value=-30, max_value=30,
+            name='WristRotate', servo_channel=1, min_value=-100, max_value=100,
             fake=self.fake))
         self.add_resource('wrist-bend', Servo(
-            name='WristBend', servo_channel=2, min_value=-30, max_value=30,
+            name='WristBend', servo_channel=2, min_value=-100, max_value=100,
             fake=self.fake))
         self.add_resource('elbow-bend', Servo(
-            name='ElbowBend', servo_channel=3, min_value=-30, max_value=30,
+            name='ElbowBend', servo_channel=3, min_value=-100, max_value=100,
             fake=self.fake))
         self.add_resource('shoulder-bend', Servo(
-            name='ShoulderBend', servo_channel=4, min_value=-30, max_value=30,
+            name='ShoulderBend', servo_channel=4, min_value=-100, max_value=100,
             fake=self.fake))
         self.add_resource('shoulder-rotate', Servo(
-            name='ShoulderRotate', servo_channel=5, min_value=-30,
-            max_value=30, fake=self.fake))
+            name='ShoulderRotate', servo_channel=5, min_value=-100,
+            max_value=100, fake=self.fake))
 
     def start(self):
         for _, resource in self._resources.items():

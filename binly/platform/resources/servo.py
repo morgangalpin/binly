@@ -5,9 +5,11 @@ from binly.utils.resource import Resource
 
 
 class Servo(Resource):
-    DEFAULT_SERVO_MIN = 204  # Min pulse length out of 4096.
-    DEFAULT_SERVO_MAX = 410  # Max pulse length out of 4096.
+    DEFAULT_SERVO_MIN = 50  # Min pulse length out of 4096.
+    DEFAULT_SERVO_MAX = 1050  # Max pulse length out of 4096.
     SERVO_PWM_FREQ_HZ = 50
+
+# TODO adjust arm servo ranges.
 
     def __init__(self, name, servo_channel, min_value, max_value,
                  servo_min=DEFAULT_SERVO_MIN, servo_max=DEFAULT_SERVO_MAX,
