@@ -45,12 +45,6 @@ class PlatformController(object):
         self.add_resource_subscriber_to_publisher(
             'throttle', steering.get_publisher(), 'scaled-steering')
 
-        # TODO: Fix backwards controls:
-        # gripper
-        # elbow-bend
-        # shoulder-bend: forward/back
-        #
-        # TODO: Fix squeaky shoulder-rotate.
         self.add_resource('gripper', Servo(
             name='Gripper', servo_channel=0, min_value=0, max_value=200,
             servo_min=175, servo_max=395, fake=self.fake))

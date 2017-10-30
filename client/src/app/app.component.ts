@@ -12,20 +12,5 @@ export class AppComponent {
 
   isConnected:boolean = false;
 
-  progress: number = 0;
-
-  constructor(
-    private socketService: SocketService
-  ) {
-    // this.socketService.
-    // Update the value for the progress-bar on an interval.
-    setInterval(() => {
-      this.progress = (this.progress + Math.floor(Math.random() * 4) + 1) % 100;
-    }, 200);
-  }
-
-  // connect():void {
-  //   this.socketService.get('test', 'AppComponent.connect()');
-  //   this.isConnected = true;
-  // }
+  constructor() {}
 }

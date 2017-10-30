@@ -5,8 +5,8 @@ from binly.utils.resource import Resource
 
 
 class Camera(Resource):
-    TIME_BETWEEN_IMAGE_PURGES_SECONDS = 5
-    FRAMES_PER_SECOND = 4
+    TIME_BETWEEN_IMAGE_PURGES_SECONDS = 10
+    FRAMES_PER_SECOND = 0.75
 
     def __init__(self,
                  image_dir,

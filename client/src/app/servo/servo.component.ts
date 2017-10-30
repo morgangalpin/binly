@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Optional } from '@angular/core';
 
-import { FormatterSet, LeftRightFormatterSet, OpenCloseFormatterSet, ForwardBackwardFormatterSet, UpDownFormatterSet } from '../formatter';
+import { FormatterSet, OpenCloseFormatterSet, PositiveNegativeFormatterSet } from '../formatter';
 import { SocketService, SimpleSocketService } from '../shared';
 
 @Component({
@@ -39,14 +39,20 @@ export class ServoComponent implements OnInit {
                     this.labelUpdater = new OpenCloseFormatterSet(this.valueMin, this.valueMax);
                     break;
                 case "up-down":
-                    this.labelUpdater = new UpDownFormatterSet();
+                    this.labelUpdater = new PositiveNegativeFormatterSet('Up', 'Down', 'Center');
+                    break;
+                case "down-up":
+                    this.labelUpdater = new PositiveNegativeFormatterSet('Down', 'Up', 'Center');
                     break;
                 case "forward-backward":
-                    this.labelUpdater = new ForwardBackwardFormatterSet();
+                    this.labelUpdater = new PositiveNegativeFormatterSet('Forward', 'Backward', 'Stop');
                     break;
                 case "left-right":
+                    this.labelUpdater = new PositiveNegativeFormatterSet('Left', 'Right', 'Center');
+                    break;
+                case "right-left":
                 default:
-                    this.labelUpdater = new LeftRightFormatterSet();
+                    this.labelUpdater = new PositiveNegativeFormatterSet('Right', 'Left', 'Center');
             }
         }
     }
