@@ -12,7 +12,7 @@ export class SteeringComponent extends ServoComponent {
             this.name = 'Steering';
         }
         if (!this.labelStyle) {
-            this.labelStyle = 'left-right';
+            this.labelStyle = 'right-left';
         }
         super.ngOnInit();
     }
