@@ -4,8 +4,6 @@ import * as io from "socket.io-client";
 
 import { environment } from '../../environments/environment';
 
-// import { IMessage, ISocketItem } from "../../models";
-
 @Injectable()
 export class SocketService {
     // private host: string = "http://192.168.1.64:8080";

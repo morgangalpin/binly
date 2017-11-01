@@ -90,10 +90,28 @@ URL: <{url}>
             'gps', api_controller.get_resource_subscriber('gps'), 'feed')
         platform_controller.add_resource_subscriber_to_publisher(
             'steering', api_controller.get_resource_publisher('steering'),
-            'update')
+            'steering')
         platform_controller.add_resource_subscriber_to_publisher(
             'throttle', api_controller.get_resource_publisher('throttle'),
+            'throttle')
+        platform_controller.add_resource_subscriber_to_publisher(
+            'gripper', api_controller.get_resource_publisher('gripper'),
             'update')
+        platform_controller.add_resource_subscriber_to_publisher(
+            'wrist-rotate', api_controller.get_resource_publisher(
+                'wrist-rotate'), 'update')
+        platform_controller.add_resource_subscriber_to_publisher(
+            'wrist-bend', api_controller.get_resource_publisher('wrist-bend'),
+            'update')
+        platform_controller.add_resource_subscriber_to_publisher(
+            'elbow-bend', api_controller.get_resource_publisher('elbow-bend'),
+            'update')
+        platform_controller.add_resource_subscriber_to_publisher(
+            'shoulder-bend', api_controller.get_resource_publisher(
+                'shoulder-bend'), 'update')
+        platform_controller.add_resource_subscriber_to_publisher(
+            'shoulder-rotate', api_controller.get_resource_publisher(
+                'shoulder-rotate'), 'update')
 
         platform_controller.socketio = api_controller._socketio
         platform_controller.start()
@@ -126,6 +144,7 @@ def mkdir_p(path):
             pass
         else:
             raise
+
 
 if __name__ == '__main__':
     entry_point()

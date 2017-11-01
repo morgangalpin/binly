@@ -12,6 +12,9 @@ Server Setup Instructions::
         pip install -r requirements-pi.txt
         # else anything else:
         pip install -r requirements.txt
+        # Also initialize the submodules.
+        git submodule init
+        git submodule update
 
 Client Setup Instructions::
         # Follow instructions in client/README.md

@@ -5,9 +5,9 @@
 #     from pytest.mark import parametrize
 #
 import pytest
-parametrize = pytest.mark.parametrize
-
 from binly.utils.resource import (Resource)
+
+parametrize = pytest.mark.parametrize
 
 
 class TestResource(object):
@@ -39,3 +39,24 @@ class TestResource(object):
         assert Resource.scale_value(
             value, min_source_value, max_source_value, target_min,
             target_max) == expected
+
+    @parametrize('value, min_source_value, max_source_value, target_min, \
+        target_max, expected', [
+        (0, 0, 10, 0, 1, 0),
+        (3, 0, 10, 0, 1, 0.3),
+        (5, 0, 10, 0, 1, 0.5),
+        (10, 0, 10, 0, 1, 1.0),
+        (-5, -5, 5, -1, 1, -1),
+        (0, -5, 5, -1, 1, 0),
+        (1, -5, 5, -1, 1, 0.2),
+        (-1, -5, 5, -1, 1, -0.2),
+        (5, -5, 5, -1, 1, 1),
+    ])
+    def test_scale_float_value(self, value, min_source_value, max_source_value,
+                               target_min, target_max, expected):
+        tolerance = 0.00000001
+        actual = Resource.scale_float_value(
+            value, min_source_value, max_source_value, target_min,
+            target_max)
+        assert actual >= expected - tolerance \
+            and actual <= expected + tolerance

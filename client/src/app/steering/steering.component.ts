@@ -1,42 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { SteeringService } from './steering.service';
+import { ServoComponent } from '../servo/servo.component';
 
 @Component({
     selector: 'app-steering',
-    templateUrl: './steering.component.html',
-    styleUrls: ['./steering.component.css']
+    templateUrl: './steering.component.html'
 })
-export class SteeringComponent implements OnInit {
-
-    steering: number;
-    label: string;
-
-    constructor(
-        private steeringService: SteeringService
-    ) {}
-
-    setSteering(value: number) {
-        if (value != this.steering) {
-            console.log("Changing steering value from: " + this.steering + " to " + value)
-            this.steering = value;
-            this.updateLabel(this.steering);
-            this.steeringService.setSteering(value);
-        }
-    }
-
-    // Update the label value based on the given value.
-    updateLabel(value) {
-        if (value > 0) {
-            this.label = 'Right ' + value;
-        } else if (value < 0) {
-            this.label = 'Left ' + -value;
-        } else {
-            this.label = 'Center'
-        }
-    }
-
+export class SteeringComponent extends ServoComponent {
     ngOnInit() {
-        this.setSteering(0);
+        if (!this.name) {
+            this.name = 'Steering';
+        }
+        if (!this.labelStyle) {
+            this.labelStyle = 'right-left';
+        }
+        super.ngOnInit();
     }
 }

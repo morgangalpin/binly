@@ -1,11 +1,11 @@
-<md-card>
-  <md-card-title-group>
-    <md-card-title>Steering</md-card-title>
-  </md-card-title-group>
-  <md-card-content>
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>{{name}}</mat-card-title>
+  </mat-card-title-group>
+  <mat-card-content>
     {{label}}
-  </md-card-content>
-  <md-card-actions>
-    <md-slider value="0" md-discrete min="-5" max="5" step="1" [ngModel]="steering" (ngModelChange)="setSteering($event)"></md-slider>
-  </md-card-actions>
-</md-card>
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-slider discrete class="mat-accent" value="0" [min]="valueMin" [max]="valueMax" [step]="valueStep" [ngModel]="servo" (ngModelChange)="setValue($event)"></mat-slider>
+  </mat-card-actions>
+</mat-card>

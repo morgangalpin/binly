@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule, MatSliderModule } from '@angular/material';
+import { SimpleSocketService } from '../shared';
 
-import { SteeringComponent } from './steering.component';
+import { ServoComponent } from './servo.component';
 
 @NgModule({
   imports: [
@@ -12,8 +13,8 @@ import { SteeringComponent } from './steering.component';
     MatCardModule,
     MatSliderModule
   ],
-  declarations: [SteeringComponent],
-  exports: [SteeringComponent],
+  declarations: [ServoComponent],
+  exports: [ServoComponent],
   providers: []
 })
-export class SteeringModule { }
+export class ServoModule { }

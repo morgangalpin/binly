@@ -1,26 +1,20 @@
-<md-sidenav-container [class.m2app-dark]="isDarkTheme">
+<mat-sidenav-container [class.m2app-dark]="isDarkTheme">
 
-  <md-sidenav #sidenav mode="side" class="app-sidenav">
-    Sidenav
-  </md-sidenav>
-
-  <md-toolbar color="primary">
-    <button class="app-icon-button" (click)="sidenav.toggle()">
-      <i class="material-icons app-toolbar-menu">menu</i>
-    </button> {{title}}
-
+  <mat-toolbar color="primary">
+    {{title}}
     <span class="app-toolbar-filler"></span>
-  </md-toolbar>
+  </mat-toolbar>
 
   <div class="app-content">
 
     <div class="container">
-      <app-gps></app-gps>
+      <app-throttle [valueMin]="-5" [valueMax]="5" [valueStep]="1" [valueInitial]="0"></app-throttle>
+      <app-steering [valueMin]="-5" [valueMax]="5" [valueStep]="1" [valueInitial]="0"></app-steering>
+      <app-arm></app-arm>
       <app-camera></app-camera>
-      <app-steering></app-steering>
-      <app-throttle></app-throttle>
+      <!-- <app-gps></app-gps> -->
     </div>
 
   </div>
 
-</md-sidenav-container>
+</mat-sidenav-container>

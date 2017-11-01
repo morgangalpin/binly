@@ -98,7 +98,16 @@ Setting to minimum.' % (label, value, min_value))
     def scale_value(source_value, min_source_value, max_source_value,
                     target_min, target_max):
         """ Calculate the target value for the given source_value. """
+        return int(
+            Resource.scale_float_value(source_value, min_source_value,
+                                       max_source_value, target_min,
+                                       target_max))
+
+    @staticmethod
+    def scale_float_value(source_value, min_source_value, max_source_value,
+                          target_min, target_max):
+        """ Calculate the target value for the given source_value. """
         return target_min + \
-            int((float(source_value - min_source_value)
-                 / float(max_source_value - min_source_value))
-                * (target_max - target_min))
+            (float(source_value - min_source_value)
+             / float(max_source_value - min_source_value)) \
+            * (target_max - target_min)

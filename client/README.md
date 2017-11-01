@@ -17,14 +17,14 @@ NPM comes bundled with Node.js so [download](https://nodejs.org/download/) and i
 ```bash
 cd client
 npm install
-npm install -g angular-cli
+npm install -g @angular/cli
 ```
 
 **Trouble Installing angular-cli?**
 
 Try:
 ```bash
-npm install angular-cli
+npm install @angular/cli
 ```
 
 This installs angular-cli into your client directory.

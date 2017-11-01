@@ -6,10 +6,10 @@ from pytest import raises
 #     from pytest.mark import parametrize
 #
 import pytest
-parametrize = pytest.mark.parametrize
-
 # from binly import metadata
 from binly.utils.subscriber import (Subscriber, NoDataException)
+
+parametrize = pytest.mark.parametrize
 
 
 class TestSubscriber(object):

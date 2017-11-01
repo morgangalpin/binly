@@ -5,8 +5,8 @@ from binly.utils.resource import Resource
 
 
 class Camera(Resource):
-    TIME_BETWEEN_IMAGE_PURGES_SECONDS = 5
-    FRAMES_PER_SECOND = 4
+    TIME_BETWEEN_IMAGE_PURGES_SECONDS = 10
+    FRAMES_PER_SECOND = 0.75
 
     def __init__(self,
                  image_dir,
@@ -70,10 +70,10 @@ class Camera(Resource):
                         os.remove(file_path)
                 except Exception as e:
                     logging.error(e)
-        else:
-            logging.debug(
-                'Not removing images from "%s" because it is not \
-a valid directory.' % self._image_dir)
+#         else:
+#             logging.debug(
+#                 'Not removing images from "%s" because it is not \
+# a valid directory.' % self._image_dir)
 
 
 class FakePiCamera(object):
