@@ -47,22 +47,24 @@ class PlatformController(object):
 
         self.add_resource('gripper', Servo(
             name='Gripper', servo_channel=0, min_value=0, max_value=200,
-            servo_min=175, servo_max=395, fake=self.fake))
+            initial_value=0, servo_min=175, servo_max=395, fake=self.fake))
         self.add_resource('wrist-rotate', Servo(
             name='WristRotate', servo_channel=1, min_value=-100, max_value=100,
-            servo_min=110, servo_max=545, fake=self.fake))
+            initial_value=0, servo_min=110, servo_max=545, fake=self.fake))
         self.add_resource('wrist-bend', Servo(
             name='WristBend', servo_channel=2, min_value=-100, max_value=100,
-            servo_min=120, servo_max=390, fake=self.fake))
+            initial_value=0, servo_min=120, servo_max=390, fake=self.fake))
         self.add_resource('elbow-bend', Servo(
             name='ElbowBend', servo_channel=3, min_value=-100, max_value=100,
-            servo_min=90, servo_max=545, fake=self.fake))
+            initial_value=100, servo_min=90, servo_max=545, fake=self.fake))
         self.add_resource('shoulder-bend', Servo(
-            name='ShoulderBend', servo_channel=4, min_value=-100, max_value=100,
-            servo_min=100, servo_max=515, fake=self.fake))
+            name='ShoulderBend', servo_channel=4, min_value=-100,
+            initial_value=-100, max_value=100, servo_min=100, servo_max=515,
+            fake=self.fake))
         self.add_resource('shoulder-rotate', Servo(
             name='ShoulderRotate', servo_channel=5, min_value=-100,
-            max_value=100, servo_min=90, servo_max=545, fake=self.fake))
+            initial_value=0, max_value=100, servo_min=90, servo_max=545,
+            fake=self.fake))
 
     def start(self):
         for _, resource in self._resources.items():
@@ -97,5 +99,5 @@ class PlatformController(object):
         if resource_id in self._resources:
             subscriber = self._resources[resource_id].get_subscriber()
             publisher.subscribe(subscriber, *topics)
-            # logging.debug('Publisher now has "%s" subscriber for topics: [%s]',
-            #               resource_id, ', '.join(topics))
+        # logging.debug('Publisher now has "%s" subscriber for topics: [%s]',
+        #               resource_id, ', '.join(topics))
