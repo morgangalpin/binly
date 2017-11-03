@@ -1,5 +1,5 @@
 <mat-card-content class="servo">
     <div class="servo-name">{{name}}</div>
     <div class="servo-label">{{label}}</div>
-    <div class="servo-control"><mat-slider discrete class="mat-accent" value="{{valueInitial}}" [min]="valueMin" [max]="valueMax" [step]="valueStep" [ngModel]="servo" (ngModelChange)="setValue($event)"></mat-slider></div>
+    <div class="servo-control"><mat-slider discrete class="mat-accent" value="{{value}}" [min]="valueMin" [max]="valueMax" [step]="valueStep" [ngModel]="servo" (ngModelChange)="setValue($event)"></mat-slider></div>
 </mat-card-content>
