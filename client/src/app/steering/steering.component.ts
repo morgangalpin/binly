@@ -16,4 +16,22 @@ export class SteeringComponent extends ServoComponent {
         }
         super.ngOnInit();
     }
+
+    onKeyPress(key: string) {
+        switch (key) {
+            case 'a':
+                if (this.value > this.valueMin) {
+                    this.setValue(this.value - 1);
+                }
+                break;
+
+            case 'd':
+                if (this.value < this.valueMax) {
+                    this.setValue(this.value + 1);
+                }
+                break;
+
+            default:
+        }
+    }
 }

@@ -16,4 +16,22 @@ export class ThrottleComponent extends ServoComponent {
         }
         super.ngOnInit();
     }
+
+    onKeyPress(key: string) {
+        switch (key) {
+            case 's':
+                if (this.value > this.valueMin) {
+                    this.setValue(this.value - 1);
+                }
+                break;
+
+            case 'w':
+                if (this.value < this.valueMax) {
+                    this.setValue(this.value + 1);
+                }
+                break;
+
+            default:
+        }
+    }
 }
