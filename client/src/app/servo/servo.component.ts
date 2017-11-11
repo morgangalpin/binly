@@ -15,6 +15,7 @@ export class ServoComponent implements OnInit {
     @Input() valueStep: number;
     @Input() valueInitial: number;
     @Input() labelStyle: string;
+    @Input() controls: { [index: string]: ServoComponent } = {};
     public value: number;
     public label: string;
     private socketService: SimpleSocketService;
@@ -27,6 +28,7 @@ export class ServoComponent implements OnInit {
 
     ngOnInit() {
         console.log("Initializing servo: " + this.name);
+        this.controls[this.name] = this;
         this.initLabelUpdater();
         this.socketService = new SimpleSocketService(this.baseSocketService, this.name, 'update');
         this.setValue(this.valueInitial);

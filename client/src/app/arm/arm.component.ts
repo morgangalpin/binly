@@ -8,6 +8,7 @@ import { ServoComponent } from '../servo/servo.component';
     styleUrls: ['./arm.component.css']
 })
 export class ArmComponent implements OnInit {
+    public servos: { [index: string]: ServoComponent } = {};
 
     constructor() {}
 
